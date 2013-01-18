@@ -1,0 +1,13 @@
+document
+  
+  agent(JASON)
+  activity(GoPlay, -, -)
+  entity(Ball)
+  wasDerivedFrom(Ball, Ball, -, -, -)
+  wasAssociatedWith(GoPlay, JASON, -)
+  actedOnBehalfOf(JASON, JASON, -)
+  wasAttributedTo(Ball, JASON)
+  used(GoPlay, Ball, -)
+  wasGeneratedBy(Ball, GoPlay, -)
+  wasInformedBy(GoPlay, GoPlay)
+endDocument
