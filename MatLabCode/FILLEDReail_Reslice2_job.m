@@ -1,0 +1,41 @@
+%-----------------------------------------------------------------------
+% Job configuration created by cfg_util (rev $Rev: 3599 $)
+%-----------------------------------------------------------------------
+matlabbatch{1}.spm.spatial.realign.estimate.data = {'<UNDEFINED>'};
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.quality = 0.9;
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.sep = 4;
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.fwhm = 5;
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.rtm = 1;
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.interp = 2;
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.wrap = [0 0 0];
+matlabbatch{1}.spm.spatial.realign.estimate.eoptions.weight = {''};
+matlabbatch{2}.spm.spatial.realign.write.data = '<UNDEFINED>';
+matlabbatch{2}.spm.spatial.realign.write.roptions.which = [2 1];
+matlabbatch{2}.spm.spatial.realign.write.roptions.interp = 4;
+matlabbatch{2}.spm.spatial.realign.write.roptions.wrap = [0 0 0];
+matlabbatch{2}.spm.spatial.realign.write.roptions.mask = 1;
+matlabbatch{2}.spm.spatial.realign.write.roptions.prefix = 'r';
+matlabbatch{3}.spm.spatial.coreg.estwrite.ref = '<UNDEFINED>';
+matlabbatch{3}.spm.spatial.coreg.estwrite.source = '<UNDEFINED>';
+matlabbatch{3}.spm.spatial.coreg.estwrite.other = {''};
+matlabbatch{3}.spm.spatial.coreg.estwrite.eoptions.cost_fun = 'nmi';
+matlabbatch{3}.spm.spatial.coreg.estwrite.eoptions.sep = [4 2];
+matlabbatch{3}.spm.spatial.coreg.estwrite.eoptions.tol = [0.02 0.02 0.02 0.001 0.001 0.001 0.01 0.01 0.01 0.001 0.001 0.001];
+matlabbatch{3}.spm.spatial.coreg.estwrite.eoptions.fwhm = [7 7];
+matlabbatch{3}.spm.spatial.coreg.estwrite.roptions.interp = 1;
+matlabbatch{3}.spm.spatial.coreg.estwrite.roptions.wrap = [0 0 0];
+matlabbatch{3}.spm.spatial.coreg.estwrite.roptions.mask = 0;
+matlabbatch{3}.spm.spatial.coreg.estwrite.roptions.prefix = 'r';
+matlabbatch{4}.spm.spatial.realign.estwrite.data = {};
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.quality = 0.9;
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.sep = 4;
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.fwhm = 5;
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.rtm = 1;
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.interp = 2;
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.wrap = [0 0 0];
+matlabbatch{4}.spm.spatial.realign.estwrite.eoptions.weight = {''};
+matlabbatch{4}.spm.spatial.realign.estwrite.roptions.which = [2 1];
+matlabbatch{4}.spm.spatial.realign.estwrite.roptions.interp = 4;
+matlabbatch{4}.spm.spatial.realign.estwrite.roptions.wrap = [0 0 0];
+matlabbatch{4}.spm.spatial.realign.estwrite.roptions.mask = 1;
+matlabbatch{4}.spm.spatial.realign.estwrite.roptions.prefix = 'r';
