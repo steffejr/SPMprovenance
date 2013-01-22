@@ -1,0 +1,10 @@
+document
+  
+  activity(bet, -, -, [prov:d="0.5", prov:g="0.35"])
+  activity(SpatialNormalization, -, -)
+  entity(InputImage1, [prov:TR="3.93", prov:type="neuroimage"])
+  entity(OutputImage1)
+  wasGeneratedBy(OutputImage1, bet, -)
+  used(bet, InputImage1, -)
+  used(SpatialNormalization, OutputImage1, -)
+endDocument

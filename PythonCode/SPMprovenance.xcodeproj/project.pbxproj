@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		96AC9CF416AE281600896B31 /* test1.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test1.py; sourceTree = "<group>"; };
+		96AC9CF616AE291100896B31 /* test2.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test2.py; sourceTree = "<group>"; };
 		96F4F1F016AE0E16005B6D25 /* SPMextract1.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = SPMextract1.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -15,6 +16,7 @@
 		96F4F1E316AE0DE7005B6D25 = {
 			isa = PBXGroup;
 			children = (
+				96AC9CF616AE291100896B31 /* test2.py */,
 				96AC9CF416AE281600896B31 /* test1.py */,
 				96F4F1F016AE0E16005B6D25 /* SPMextract1.py */,
 			);
