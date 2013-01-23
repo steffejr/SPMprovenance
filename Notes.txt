@@ -1,0 +1,6 @@
+Notes from 1/23/2013
+
+each parameter is its own "entity"
+specify an entity that has "type:collection" of the parameters
+This collection entity uses "hadMember" of all the individual parameter entities.
+This collection entity is "used" by the "activity"

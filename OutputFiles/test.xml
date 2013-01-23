@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#" xmlns:ns2="http://openprovenance.org/collection#" xmlns:ns3="http://openprovenance.org/validation#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:prim="http://openprovenance.org/primitives#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pc1="http://www.ipaw.info/pc1/">
+    <prov:activity xmlns="" prov:id="bet2">
+        <prov:startTime>2013-07-06T05:04:03.000-04:00</prov:startTime>
+        <prov:type xsi:type="xsd:QName">TestNameFile</prov:type>
+        <prov:parameter xsi:type="xsd:string">g=5</prov:parameter>
+        <prov:g xsi:type="xsd:string">0.4</prov:g>
+    </prov:activity>
+    <prov:activity xmlns="" prov:id="SpatialNormalization"/>
+    <prov:entity xmlns="" prov:id="InputImage1">
+        <prov:type xsi:type="xsd:string">neuroimage</prov:type>
+        <prov:TR xsi:type="xsd:string">3.93</prov:TR>
+    </prov:entity>
+    <prov:entity xmlns="" prov:id="OutputImage1"/>
+    <prov:wasGeneratedBy>
+        <prov:entity xmlns="" prov:ref="OutputImage1"/>
+        <prov:activity xmlns="" prov:ref="bet2"/>
+    </prov:wasGeneratedBy>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="bet2"/>
+        <prov:entity xmlns="" prov:ref="InputImage1"/>
+    </prov:used>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="SpatialNormalization"/>
+        <prov:entity xmlns="" prov:ref="OutputImage1"/>
+    </prov:used>
+</prov:document>

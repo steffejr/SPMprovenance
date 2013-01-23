@@ -8,7 +8,6 @@ from prov.model import Namespace, PROV
 EX=Namespace("ex","http://www.example.com/")
 
 g = prov.ProvBundle()
-
 #act1=g.activity('bet',other_attributes={'prov:g':'0.35','prov:d':'0.5'})
 act1=g.activity('nidm:bet2',datetime.datetime(2013,7,6,5,4,3),None,{PROV["type"]:EX["TestNameFile"],PROV["parameter"]:"g=5",PROV["g"]:'0.4'})
 act2=g.activity('SpatialNormalization')
