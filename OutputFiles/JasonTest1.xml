@@ -3,10 +3,7 @@
     <prov:activity xmlns="" prov:id="bet2">
         <prov:startTime>2013-07-06T05:04:03.000-04:00</prov:startTime>
         <prov:type xsi:type="xsd:QName">TestNameFile</prov:type>
-        <prov:parameter xsi:type="xsd:string">g=5</prov:parameter>
-        <prov:g xsi:type="xsd:string">0.4</prov:g>
     </prov:activity>
-    <prov:activity xmlns="" prov:id="SpatialNormalization"/>
     <prov:entity xmlns="" prov:id="InputImage1">
         <prov:type xsi:type="xsd:string">neuroimage</prov:type>
         <prov:TR xsi:type="xsd:string">3.93</prov:TR>
@@ -20,8 +17,28 @@
         <prov:activity xmlns="" prov:ref="bet2"/>
         <prov:entity xmlns="" prov:ref="InputImage1"/>
     </prov:used>
+    <prov:entity xmlns="" prov:id="parameters">
+        <prov:label>bet_param</prov:label>
+        <prov:type xsi:type="xsd:string">collection</prov:type>
+    </prov:entity>
+    <prov:entity xmlns="" prov:id="g">
+        <prov:type xsi:type="xsd:string">parameter</prov:type>
+        <prov:value xsi:type="xsd:string">0.5</prov:value>
+    </prov:entity>
+    <prov:entity xmlns="" prov:id="d">
+        <prov:type xsi:type="xsd:string">parameter</prov:type>
+        <prov:value xsi:type="xsd:string">0.25</prov:value>
+    </prov:entity>
+    <prov:hadMember>
+        <prov:collection xmlns="" prov:ref="parameters"/>
+        <prov:entity xmlns="" prov:ref="g"/>
+    </prov:hadMember>
+    <prov:hadMember>
+        <prov:collection xmlns="" prov:ref="parameters"/>
+        <prov:entity xmlns="" prov:ref="d"/>
+    </prov:hadMember>
     <prov:used>
-        <prov:activity xmlns="" prov:ref="SpatialNormalization"/>
-        <prov:entity xmlns="" prov:ref="OutputImage1"/>
+        <prov:activity xmlns="" prov:ref="bet2"/>
+        <prov:entity xmlns="" prov:ref="parameters"/>
     </prov:used>
 </prov:document>

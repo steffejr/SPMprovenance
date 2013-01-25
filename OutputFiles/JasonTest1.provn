@@ -1,10 +1,14 @@
 document
   
-  activity(nidm:bet2, 2013-07-06T05:04:03, -, [prov:type='ex:TestNameFile', prov:parameter="g=5", prov:g="0.4"])
-  activity(SpatialNormalization, -, -)
+  activity(nidm:bet2, 2013-07-06T05:04:03, -, [prov:type='ex:TestNameFile'])
   entity(InputImage1, [prov:TR="3.93", prov:type="neuroimage"])
   entity(OutputImage1)
   wasGeneratedBy(OutputImage1, nidm:bet2, -)
   used(nidm:bet2, InputImage1, -)
-  used(SpatialNormalization, OutputImage1, -)
+  entity(parameters, [prov:type="collection", prov:label="bet_param"])
+  entity(bet:g, [prov:type="parameter", prov:value="0.5"])
+  entity(bet:d, [prov:type="parameter", prov:value="0.25"])
+  hadMember(parameters, bet:g)
+  hadMember(parameters, bet:d)
+  used(nidm:bet2, parameters, -)
 endDocument

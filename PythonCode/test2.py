@@ -6,24 +6,29 @@ sys.path.append("/Users/jason/Documents/ProvenanceTools/prov")
 import prov.model as prov
 from prov.model import Namespace, PROV
 EX=Namespace("ex","http://www.example.com/")
-
+# create the proveance
 g = prov.ProvBundle()
-#act1=g.activity('bet',other_attributes={'prov:g':'0.35','prov:d':'0.5'})
-act1=g.activity('nidm:bet2',datetime.datetime(2013,7,6,5,4,3),None,{PROV["type"]:EX["TestNameFile"],PROV["parameter"]:"g=5",PROV["g"]:'0.4'})
-act2=g.activity('SpatialNormalization')
-
+# Create the first activity
+act1=g.activity('nidm:bet2',datetime.datetime(2013,7,6,5,4,3),None,{PROV["type"]:EX["TestNameFile"]})
+# create an entite to be used by this activity
 in1=g.entity('InputImage1',{'prov:type':'neuroimage','prov:TR':'3.93'})
+# create the outout from the first entity
 out1=g.entity('OutputImage1')
+# link the input and output to the activity
 g.wasGeneratedBy(out1,act1)
 g.used(act1,in1)
-g.used(act2,out1)
+# create the entity that will be the collection of parameters
+collect1=g.entity('parameters',{'prov:type':'prov:Collection','prov:type':'collection','prov:label':'bet_param'})
+# create the parameters as entities
+bet_param1=g.entity('bet:g',{'prov:type':'parameter','prov:value':'0.5'})
+bet_param2=g.entity('bet:d',{'prov:type':'parameter','prov:value':'0.25'})
+# link the parameters to the collection
+g.hadMember(collect1,bet_param1)
+g.hadMember(collect1,bet_param2)
+# link the collection to the entity
+g.used(act1,collect1)
 
-
-
-
+# write the provenance to a file
 with open('/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles/JasonTest1.provn', 'wt') as fp:
     fp.writelines(g.get_provn())
 
-
-# What we need to know is how to assign types to different entities. These would be to specifiy that an entity is an image, a parameter, a verctor, etc. Then we need to determine how to assign parameters to activities. Should teh parameters be entities on their own?
-# We can simply set all parameters to be entities and say that an activity used them
