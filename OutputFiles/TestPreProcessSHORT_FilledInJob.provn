@@ -1,0 +1,9 @@
+document
+  
+  activity(matlabbatch{1}.spm.spatial.preproc, -, -)
+  activity(matlabbatch{2}.spm.temporal.st, -, -)
+  activity(matlabbatch{3}.spm.spatial.realign.estwrite, -, -)
+  activity(matlabbatch{4}.spm.spatial.coreg.estimate, -, -)
+  activity(matlabbatch{5}.spm.spatial.normalise.write, -, -)
+  activity(matlabbatch{6}.spm.spatial.smooth, -, -)
+endDocument
