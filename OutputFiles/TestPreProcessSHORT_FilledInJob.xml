@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#" xmlns:ns2="http://openprovenance.org/collection#" xmlns:ns3="http://openprovenance.org/validation#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:prim="http://openprovenance.org/primitives#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pc1="http://www.ipaw.info/pc1/">
+    <prov:entity xmlns="" prov:id="matlabbatch"/>
+    <prov:activity xmlns="" prov:id="spm.spatial.preproc"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.spatial.preproc"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="data_1"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.preproc"/>
+        <prov:entity xmlns="" prov:ref="data_1"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="output_1"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.preproc"/>
+        <prov:entity xmlns="" prov:ref="output_1"/>
+    </prov:used>
+    <prov:activity xmlns="" prov:id="spm.temporal.st"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.temporal.st"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="scans_2"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.temporal.st"/>
+        <prov:entity xmlns="" prov:ref="scans_2"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="nslices_2"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.temporal.st"/>
+        <prov:entity xmlns="" prov:ref="nslices_2"/>
+    </prov:used>
+    <prov:activity xmlns="" prov:id="spm.spatial.realign.estwrite"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.spatial.realign.estwrite"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="data_3"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.realign.estwrite"/>
+        <prov:entity xmlns="" prov:ref="data_3"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="eoptions_3"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.realign.estwrite"/>
+        <prov:entity xmlns="" prov:ref="eoptions_3"/>
+    </prov:used>
+    <prov:activity xmlns="" prov:id="spm.spatial.coreg.estimate"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.spatial.coreg.estimate"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="ref_4"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.coreg.estimate"/>
+        <prov:entity xmlns="" prov:ref="ref_4"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="source_4"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.coreg.estimate"/>
+        <prov:entity xmlns="" prov:ref="source_4"/>
+    </prov:used>
+    <prov:activity xmlns="" prov:id="spm.spatial.normalise.write"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.spatial.normalise.write"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="subj_5"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.normalise.write"/>
+        <prov:entity xmlns="" prov:ref="subj_5"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="roptions_5"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.normalise.write"/>
+        <prov:entity xmlns="" prov:ref="roptions_5"/>
+    </prov:used>
+    <prov:activity xmlns="" prov:id="spm.spatial.smooth"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="matlabbatch"/>
+        <prov:entity xmlns="" prov:ref="spm.spatial.smooth"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="data_6"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.smooth"/>
+        <prov:entity xmlns="" prov:ref="data_6"/>
+    </prov:used>
+    <prov:entity xmlns="" prov:id="fwhm_6"/>
+    <prov:used>
+        <prov:activity xmlns="" prov:ref="spm.spatial.smooth"/>
+        <prov:entity xmlns="" prov:ref="fwhm_6"/>
+    </prov:used>
+</prov:document>
