@@ -61,7 +61,7 @@ for i = 1:Nsteps
     end
     % Get the help info
     
-    ProcessInput = ['matlabbatch{' num2str(i) '}'];
+    ProcessInput = [];
     for j = 1:length(Levels)
         ProcessInput = sprintf('%s.%s',ProcessInput,Levels{j});
     end
