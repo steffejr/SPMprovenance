@@ -37,7 +37,7 @@ Nsteps = length(matlabbatch);
 % create an entity which each step is a member of
 fprintf(fid,'g.entity(''%s'')\n','matlabbatch');
 % create the different steps o fthe batch stream
-for i = 1:Nsteps
+for i = 1:1Nsteps
      ListOfInPutImages{i} = {};
     ListOfOutPutImages{i} = {};
     % Set the flags for determining if output needs to be written
@@ -75,11 +75,11 @@ for i = 1:Nsteps
     % for each activity find out what the parameters are for it
      Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
     
-    for j = 1:2%length(Parameters)
+    for j = 1:length(Parameters)
         % create an entity for each of these parameter structures
-        fprintf(fid,'g.entity(''%s_%d'')\n',Parameters{j},i);
+        fprintf(fid,'g.entity(''%s'')\n',Parameters{j});
         % asscoiate these with their activities.
-        fprintf(fid,'g.used(''%s'',''%s_%d'')\n',ProcessInput,Parameters{j},i)
+        fprintf('g.used(''%s'')\n',ProcessInput)
     end
 end
 % withinthe python script
