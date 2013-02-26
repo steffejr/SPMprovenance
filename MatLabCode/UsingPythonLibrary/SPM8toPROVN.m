@@ -38,7 +38,7 @@ Nsteps = length(matlabbatch);
 fprintf(fid,'g.entity(''%s'')\n','matlabbatch');
 % create the different steps o fthe batch stream
 for i = 1:Nsteps
-     ListOfInPutImages{i} = {};
+    ListOfInPutImages{i} = {};
     ListOfOutPutImages{i} = {};
     % Set the flags for determining if output needs to be written
     WhichFlag = 0;
@@ -71,117 +71,156 @@ for i = 1:Nsteps
     fprintf(fid,'g.activity(''%s'')\n',ProcessInput);
     % make this activity a member of the batch entity
     fprintf(fid,'g.used(''%s'',''%s'')\n','matlabbatch',ProcessInput);
-    %%%%%%%%%%%%%%%%%%
-    % for each activity find out what the parameters are for it
-     Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
-    
-    for j = 1:length(Parameters)
-        % create an entity for each of these parameter structures
-        fprintf(fid,'g.entity(''%s_%d'')\n',Parameters{j},i);
-        % asscoiate these with their activities.
-        fprintf(fid,'g.used(''%s'',''%s_%d'')\n',ProcessInput,Parameters{j},i);
-        
-        D = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput, Parameters{j}));
-        % determine if this is the output for the segment tool
-        if ~isempty(strmatch(Parameters{j},'output') & strmatch(Levels{end},'preproc'))
-            InputFile = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput, Parameters{1}));
-            %InputFile = eval([ProcessInput '.' Parameters{1}]);
-            OutputStruct = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput, Parameters{j}));
-        %    OutputFiles = subfnFindSegmentOutputs(InputFile,OutputStruct);
-            [OutputFiles OutputLabels] = subfnFindSegmentOutputs(InputFile,OutputStruct);
-            
-            for kk = 1:length(OutputFiles)
-                fprintf(fid,'g.entity(''%s'')\n',OutputFiles{kk});
-     %           output_id = calllib('libneuroprov','newProcessOutput',p_prov,p_proc,'Output NIFTI',OutputFiles{kk},OutputLabels{kk});
-     %           ListOfOutPutImages{i}{length(ListOfOutPutImages{i})+1}.Ptr = output_id;
-                ListOfOutPutImages{i}{length(ListOfOutPutImages{i})+1}.Files = OutputFiles{kk};
-                ListOfOutPutImages{i}{length(ListOfOutPutImages{i})}.Indices = OutputLabels{kk};
-                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,OutputFiles{kk});
+    %%%% PREPROC %%%%
+    % Check to see if this is the preproc segment routine
+    if strmatch(Levels{end},'preproc')
+        % segment has three pieces
+        InputFile = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'data'));
+
+        %%%% opts %%%%
+        Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput '.opts']));
+        % Create a preproc options entity and make all parameters part of
+        % it
+        fprintf(fid,'g.entity(''%s'')\n','opts');
+        fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'opts');
+        for kk = 1:length(Parameters)
+            ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s.%s', i, ProcessInput, 'opts',Parameters{kk}))
+            % Check to see if the parameter is itself a structure
+            if iscell(ParameterValue)
+                % create an entity with the parameter name. This entity is
+                % actually a collection of parameter values
+                fprintf(fid, 'g.entity(''%s'')\n',Parameters{kk});
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
+                for m = 1:length(ParameterValue)
+                   fprintf(fid, 'g.entity(''%s'')\n',ParameterValue{m});
+                   fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',Parameters{kk},ParameterValue{m});
+                end
+            else
+                OutStr = subfnConvertFieldToString(ParameterValue)
+                fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
             end
         end
         
-        % if D is a cell assume it is image data
-        if iscell(D)
-            % but is this a cell of cells or just a cell of images
-            for k = 1:length(D)
-                % Check to see if D is a 4-D nifti file
-                flag = 0;
-                if iscell(D{k})
-                    
-                    [UniqueImages ListOfIndices] = subfnFindUniqueFiles(D{k});
-                    % Once unique images are found, check to see if
-                    % these images are output images from any other
-                    % processes
-                    for mm = 1:length(UniqueImages)
-                        for jj = 1:length(ListOfOutPutImages)
-                            for kk = 1:length(ListOfOutPutImages{jj})
-                                ListOfOutPutImages{jj}{kk}.Files;
-                                % see if the filename is the same
-                                if strcmp(UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Files)
-                                    % then check to see if the indices
-                                    % are the same
-                                    if ~isempty(true(ListOfIndices{1} == str2num(ListOfOutPutImages{jj}{kk}.Indices)))
-                                        fprintf(1,'Found a dependency: %s\n\t%s,Pointer: %s\n',ProcessInput,UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Ptr);
+        %%%% output %%%%
+        OutputStruct = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput, 'output'));
+        [OutputFiles OutputLabels] = subfnFindSegmentOutputs(InputFile,OutputStruct);
+        % create the output entity
+        fprintf(fid,'g.entity(''%s'')\n','output');
+        fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'output');
+        for kk = 1:length(OutputFiles)
+            fprintf(fid,'g.entity(''%s'')\n',OutputFiles{kk});
+            ListOfOutPutImages{i}{length(ListOfOutPutImages{i})+1}.Files = OutputFiles{kk};
+            ListOfOutPutImages{i}{length(ListOfOutPutImages{i})}.Indices = OutputLabels{kk};
+            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','output',OutputFiles{kk});
+        end
+    else
+        
+        %%%%%%%%%%%%%%%%%%
+        % for each activity find out what the parameters are for it
+        Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
+        
+        for j = 1:length(Parameters)
+            % Check each of these parameters to see if they themselves are
+            % structures
+            
+            if isstruct(eval(['matlabbatch{' num2str(i) '}.' ProcessInput '.' Parameters{j}]))
+                % check to see if this is a structure of parameters for the
+                % segment program
+                
+                
+                % create an entity for each of these parameter structures
+                fprintf(fid,'g.entity(''%s_%d'')\n',Parameters{j},i);
+                % asscoiate these with their activities.
+                fprintf(fid,'g.used(''%s'',''%s_%d'')\n',ProcessInput,Parameters{j},i);
+                
+                D = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput, Parameters{j}));
+                
+                
+                % if D is a cell assume it is image data
+                if iscell(D)
+                    % but is this a cell of cells or just a cell of images
+                    for k = 1:length(D)
+                        % Check to see if D is a 4-D nifti file
+                        flag = 0;
+                        if iscell(D{k})
+                            
+                            [UniqueImages ListOfIndices] = subfnFindUniqueFiles(D{k});
+                            % Once unique images are found, check to see if
+                            % these images are output images from any other
+                            % processes
+                            for mm = 1:length(UniqueImages)
+                                for jj = 1:length(ListOfOutPutImages)
+                                    for kk = 1:length(ListOfOutPutImages{jj})
+                                        ListOfOutPutImages{jj}{kk}.Files;
+                                        % see if the filename is the same
+                                        if strcmp(UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Files)
+                                            % then check to see if the indices
+                                            % are the same
+                                            if ~isempty(true(ListOfIndices{1} == str2num(ListOfOutPutImages{jj}{kk}.Indices)))
+                                                fprintf(1,'Found a dependency: %s\n\t%s,Pointer: %s\n',ProcessInput,UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Ptr);
+                                            end
+                                            
+                                        end
                                     end
-                                    
+                                end
+                            end
+                            
+                            OutStr = subfnConvertFieldToString(ListOfIndices{m});
+                            % Create the entity which is this image
+                            fprintf(fid,'g.entity(''%s'')\n',UniqueImages{m});
+                            %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
+                            %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
+                            ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = UniqueImages{m};
+                            ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = ListOfIndices{m};
+                            % assign the image to the activity that uses it.
+                            fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,UniqueImages{m});
+                            % Single image
+                        else
+                            flag = 1;
+                            break
+                        end
+                    end
+                    
+                    if flag == 1
+                        % Find the unique image names and the indices if it is a
+                        % 4-D image.
+                        [UniqueImages ListOfIndices] = subfnFindUniqueFiles(D);
+                        
+                        for mm = 1:length(UniqueImages)
+                            for jj = 1:length(ListOfOutPutImages)
+                                for kk = 1:length(ListOfOutPutImages{jj})
+                                    ListOfOutPutImages{jj}{kk}.Files;
+                                    % see if the filename is the same
+                                    if strcmp(UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Files)
+                                        % then check to see if the indices
+                                        % are the same
+                                        fprintf(1,'Found a dependency: %s\n\t%s\n',ProcessInput,UniqueImages{mm});
+                                    end
                                 end
                             end
                         end
-                    end
-                    
-                    OutStr = subfnConvertFieldToString(ListOfIndices{m});
-                    % Create the entity which is this image
-                    fprintf(fid,'g.entity(''%s'')\n',UniqueImages{m});
-%                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
-%                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
-                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = UniqueImages{m};
-                    ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = ListOfIndices{m};
-                    % assign the image to the activity that uses it.
-                    fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,UniqueImages{m});
-                    % Single image
-                else
-                    flag = 1;
-                    break 
-                end
-            end
-         
-            if flag == 1
-                % Find the unique image names and the indices if it is a
-                % 4-D image.
-                [UniqueImages ListOfIndices] = subfnFindUniqueFiles(D);
-                
-                for mm = 1:length(UniqueImages)
-                    for jj = 1:length(ListOfOutPutImages)
-                        for kk = 1:length(ListOfOutPutImages{jj})
-                            ListOfOutPutImages{jj}{kk}.Files;
-                            % see if the filename is the same
-                            if strcmp(UniqueImages{mm},ListOfOutPutImages{jj}{kk}.Files)
-                                % then check to see if the indices
-                                % are the same
-                                fprintf(1,'Found a dependency: %s\n\t%s\n',ProcessInput,UniqueImages{mm});
-                            end
+                        % Add the image to the PROV structure and to the list of
+                        % input images
+                        for m = 1:length(UniqueImages)
+                            OutStr = subfnConvertFieldToString(ListOfIndices{m});
+                            fprintf(fid,'g.entity(''%s'')\n',UniqueImages{m});
+                            %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
+                            %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
+                            ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = UniqueImages{m};
+                            ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = ListOfIndices{m};
                         end
                     end
                 end
-                % Add the image to the PROV structure and to the list of
-                % input images
-                for m = 1:length(UniqueImages)
-                    OutStr = subfnConvertFieldToString(ListOfIndices{m});
-                    fprintf(fid,'g.entity(''%s'')\n',UniqueImages{m});
-%                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
-%                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
-                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = UniqueImages{m};
-                    ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = ListOfIndices{m};
-                end
+                
             end
         end
-        
     end
 end
 % withinthe python script
 % write the provenance to a file
 PROVNoutfile = fullfile(OutDir,[FileName '.provn']);
-SVGOutFile = fullfile(OutDir,[FileName '.svg']); 
+SVGOutFile = fullfile(OutDir,[FileName '.svg']);
 fprintf(fid,'with open(''%s'', ''wt'') as fp:fp.writelines(g.get_provn())\n',PROVNoutfile)
 % close the file
 fclose(fid)
