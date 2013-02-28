@@ -12,11 +12,11 @@ addpath(PythonCode)
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestPreProcessSHORT_FilledInJob.m';
 OutDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
 % load the input job
-[inPathName inFileName] = fileparts(Infile);
-cd(inPathName)
-eval(inFileName)
+[PathName FileName] = fileparts(Infile);
+cd(PathName)
+eval(FileName)
 % Create the outout file
-Outfile = fullfile(OutDir,[inFileName '.py']);
+Outfile = fullfile(OutDir,[FileName '.py']);
 % open the output file
 fid = fopen(Outfile,'w');
 % fid = 1
@@ -168,12 +168,12 @@ for i = 1:Nsteps
               end
             % PARAMETERS
             Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
-            for kk = 1:2%length(Parameters)
+            for kk = 1:length(Parameters)
                 if ~strcmp(Parameters{kk},'scans')
-                    ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}))
+                    
                     OutStr = subfnConvertFieldToString(ParameterValue);
                     fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
-                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
+                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
                 end
             end
                     
@@ -290,8 +290,8 @@ end
 
 % withinthe python script
 % write the provenance to a file
-PROVNoutfile = fullfile(OutDir,[inFileName '.provn']);
-SVGOutFile = fullfile(OutDir,[inFileName '.svg']);
+PROVNoutfile = fullfile(OutDir,[FileName '.provn']);
+SVGOutFile = fullfile(OutDir,[FileName '.svg']);
 fprintf(fid,'with open(''%s'', ''wt'') as fp:fp.writelines(g.get_provn())\n',PROVNoutfile)
 % close the file
 fclose(fid)
