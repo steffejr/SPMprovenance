@@ -161,17 +161,17 @@ for i = 1:Nsteps
                       end
                   end
                   fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',tempFile,Index);
-                  fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','data',tempFile);
+                  fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','scans',tempFile);
                   FileName = InputFiles{kk}{1}(1:findstr(InputFiles{kk}{1},',')-1);
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = FileName;
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = Index;
               end
             % PARAMETERS
             Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
-            for kk = 1:2%length(Parameters)
+            for kk = 1:length(Parameters)-1
                 if ~strcmp(Parameters{kk},'scans')
-                    ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}))
-                    OutStr = subfnConvertFieldToString(ParameterValue);
+                    ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}));
+                    OutStr = subfnConvertFieldToString(ParameterValue)
                     fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
                     fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
                 end
@@ -179,12 +179,15 @@ for i = 1:Nsteps
                     
                     
             % OUTPUT
-             Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'))
-            
+             Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'));
+            fprintf(fid,'g.entity(''%s'')\n','st_output');
+            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'st_ouput')
             for kk = 1:length(ListOfInPutImages{i})
                 [PathName FileName Ext] = fileparts(ListOfInPutImages{i}{kk}.Files);
                 ListOfOutPutImages{i}{kk}.Files = fullfile(PathName,[Prefix FileName Ext]);
                 ListOfOutPutImages{i}{kk}.Indices = ListOfInPutImages{i}{kk}.Indices;
+                fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',ListOfOutPutImages{i}{kk}.Files,ListOfOutPutImages{i}{kk}.Indices);
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','st_ouput',ListOfOutPutImages{i}{kk}.Files)
             end
                    
             %         %%%%%%%%%%%%%%%%%%

@@ -12,11 +12,11 @@ addpath(PythonCode)
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestPreProcessSHORT_FilledInJob.m';
 OutDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
 % load the input job
-[PathName FileName] = fileparts(Infile);
-cd(PathName)
-eval(FileName)
+[inPathName inFileName] = fileparts(Infile);
+cd(inPathName)
+eval(inFileName)
 % Create the outout file
-Outfile = fullfile(OutDir,[FileName '.py']);
+Outfile = fullfile(OutDir,[inFileName '.py']);
 % open the output file
 fid = fopen(Outfile,'w');
 % fid = 1
@@ -161,30 +161,33 @@ for i = 1:Nsteps
                       end
                   end
                   fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',tempFile,Index);
-                  fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','data',tempFile);
+                  fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','scans',tempFile);
                   FileName = InputFiles{kk}{1}(1:findstr(InputFiles{kk}{1},',')-1);
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = FileName;
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = Index;
               end
             % PARAMETERS
             Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
-            for kk = 1:length(Parameters)
+            for kk = 1:length(Parameters)-1
                 if ~strcmp(Parameters{kk},'scans')
-                    
-                    OutStr = subfnConvertFieldToString(ParameterValue);
+                    ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}));
+                    OutStr = subfnConvertFieldToString(ParameterValue)
                     fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
-                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
+                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
                 end
             end
                     
                     
             % OUTPUT
-             Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'))
+             Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'));
+            fprintf(fid,'g.entity(''%s'')\n','st_output');
             
             for kk = 1:length(ListOfInPutImages{i})
                 [PathName FileName Ext] = fileparts(ListOfInPutImages{i}{kk}.Files);
                 ListOfOutPutImages{i}{kk}.Files = fullfile(PathName,[Prefix FileName Ext]);
                 ListOfOutPutImages{i}{kk}.Indices = ListOfInPutImages{i}{kk}.Indices;
+                fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',ListOfOutPutImages{i}{kk}.Files,ListOfOutPutImages{i}{kk}.Indices);
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','st_ouput',ListOfOutPutImages{i}{kk}.Files)
             end
                    
             %         %%%%%%%%%%%%%%%%%%
@@ -290,8 +293,8 @@ end
 
 % withinthe python script
 % write the provenance to a file
-PROVNoutfile = fullfile(OutDir,[FileName '.provn']);
-SVGOutFile = fullfile(OutDir,[FileName '.svg']);
+PROVNoutfile = fullfile(OutDir,[inFileName '.provn']);
+SVGOutFile = fullfile(OutDir,[inFileName '.svg']);
 fprintf(fid,'with open(''%s'', ''wt'') as fp:fp.writelines(g.get_provn())\n',PROVNoutfile)
 % close the file
 fclose(fid)
