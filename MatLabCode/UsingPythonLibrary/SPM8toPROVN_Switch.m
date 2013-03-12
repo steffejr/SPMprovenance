@@ -80,9 +80,9 @@ for i = 1:Nsteps
             % INPUT
             InputFile = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'data'));
             
-            
-            fprintf(fid,'g.entity(''%s'')\n','data');
-            fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,'data');
+            entityName = ['preproc' ':' 'data'];
+            fprintf(fid,'g.entity(''%s'',{''prov:type'':''bundle'',''spm:structpath'':''matlabbatch{%d}.%s.%s''})\n',entityName,i,ProcessInput,'data');
+            fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,entityName);
             for m = 1:length(InputFile)
                 % add a string which indexes the 3D image in a 4D image
                 Commas = findstr(InputFile{m},',');
@@ -93,8 +93,9 @@ for i = 1:Nsteps
                     tempFile = InputFile{m};
                     Index = '';
                 end
-                fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',tempFile,Index);
-                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','data',tempFile);
+                entityName = sprintf('preproc:%s',tempFile);
+                fprintf(fid,'g.entity(''%s'',{''prov:type'':''spm:image'',''prov:value'':''%s''})\n',entityName,Index);
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','data',entityName);
             end
             ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = InputFile{1};
             ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = Index;
@@ -104,8 +105,9 @@ for i = 1:Nsteps
             Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput '.opts']));
             % Create a preproc options entity and make all parameters part of
             % it
-            fprintf(fid,'g.entity(''%s'')\n','opts');
-            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'opts');
+            entityName = sprintf('preproc:%s','opts');
+            fprintf(fid,'g.entity(''%s'',{''prov:type'':''bundle'',''spm:structpath'':''matlabbatch{%d}.%s.%s''})\n',entityName,i,ProcessInput,'opts');
+            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,entityName);
             for kk = 1:length(Parameters)
                 ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s.%s', i, ProcessInput, 'opts',Parameters{kk}))
                 % Check to see if the parameter is itself a structure
@@ -115,13 +117,17 @@ for i = 1:Nsteps
                     fprintf(fid, 'g.entity(''%s'')\n',Parameters{kk});
                     fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
                     for m = 1:length(ParameterValue)
-                        fprintf(fid, 'g.entity(''%s'')\n',ParameterValue{m});
-                        fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',Parameters{kk},ParameterValue{m});
+                        entityName = sprintf('preproc:%s',ParameterValue{m});
+                        structPath = sprintf('matlabbatch{%d}.%s.%s.%s',i,ProcessInput,'opts',Parameters{kk});
+                        fprintf(fid, 'g.entity(''%s'',{''prov:type''spm:image'',''spm:structpath'':''%s'')\n',entityName,structPath);
+                        fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',Parameters{kk},entityName);
                     end
                 else
                     OutStr = subfnConvertFieldToString(ParameterValue);
-                    fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
-                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',Parameters{kk});
+                    entityName = sprintf('preproc:%s',Parameters{kk});
+                    
+                    fprintf(fid,'g.entity(''%s'',{''prov:type'':''spm:parameter'',''spm:structpath'':''matlabbatch{%d}.%s.opts.%s'',''prov:value'':''%s''})\n',entityName,i,ProcessInput,Parameters{kk},OutStr);
+                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','opts',entityName);
                 end
             end
             
@@ -161,7 +167,7 @@ for i = 1:Nsteps
                       end
                   end
                   fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',tempFile,Index);
-                  fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','scans',tempFile);
+                  fprintf(fid,'g.used(''%s'',''%s'')\n','scans',tempFile);
                   FileName = InputFiles{kk}{1}(1:findstr(InputFiles{kk}{1},',')-1);
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = FileName;
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})}.Indices = Index;
@@ -173,7 +179,7 @@ for i = 1:Nsteps
                     ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}));
                     OutStr = subfnConvertFieldToString(ParameterValue)
                     fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
-                    fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
+                    fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
                 end
             end
                     
@@ -182,7 +188,7 @@ for i = 1:Nsteps
              Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'));
             fprintf(fid,'g.entity(''%s'')\n','st_output');
             fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'st_ouput')
-            for kk = 1:length(ListOfInPutImages{i})
+            for kk = 1:length(ListOfInPutImages{i})-1
                 [PathName FileName Ext] = fileparts(ListOfInPutImages{i}{kk}.Files);
                 ListOfOutPutImages{i}{kk}.Files = fullfile(PathName,[Prefix FileName Ext]);
                 ListOfOutPutImages{i}{kk}.Indices = ListOfInPutImages{i}{kk}.Indices;
