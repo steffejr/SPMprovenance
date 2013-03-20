@@ -37,7 +37,7 @@ Nsteps = length(matlabbatch);
 % create an entity which each step is a member of
 fprintf(fid,'g.entity(''%s'')\n','matlabbatch');
 % create the different steps o fthe batch stream
-for i = 1:Nsteps
+for i = 2%1:Nsteps
     ListOfInPutImages{i} = {};
     ListOfOutPutImages{i} = {};
     % Set the flags for determining if output needs to be written
@@ -119,7 +119,7 @@ for i = 1:Nsteps
                     for m = 1:length(ParameterValue)
                         entityName = sprintf('preproc:%s',ParameterValue{m});
                         structPath = sprintf('matlabbatch{%d}.%s.%s.%s',i,ProcessInput,'opts',Parameters{kk});
-                        fprintf(fid, 'g.entity(''%s'',{''prov:type''spm:image'',''spm:structpath'':''%s'')\n',entityName,structPath);
+                        fprintf(fid, 'g.entity(''%s'',{''prov:type'':''spm:image'',''spm:structpath'':''%s''})\n',entityName,structPath);
                         fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',Parameters{kk},entityName);
                     end
                 else
@@ -147,7 +147,7 @@ for i = 1:Nsteps
             
             % INPUT
               InputFiles = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'scans'));
-              fprintf(fid,'g.entity(''%s'')\n','scans');
+              fprintf(fid,'g.entity(''%s'',{''prov:type'':''spm:structure'',''spm:structpath'':''matlabbatch{%d}.%s.scans''})\n','scans',i,ProcessInput);
               fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,'scans');
               for kk = 1:length(InputFiles)
                   
@@ -166,7 +166,7 @@ for i = 1:Nsteps
                           Index = '';
                       end
                   end
-                  fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',tempFile,Index);
+                  fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}.%s.scans{%d}''})\n',tempFile,Index,i,ProcessInput,kk);
                   fprintf(fid,'g.used(''%s'',''%s'')\n','scans',tempFile);
                   FileName = InputFiles{kk}{1}(1:findstr(InputFiles{kk}{1},',')-1);
                   ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Files = FileName;
@@ -174,26 +174,29 @@ for i = 1:Nsteps
               end
             % PARAMETERS
             Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));
-            for kk = 1:length(Parameters)-1
+            for kk = 1:length(Parameters)
                 if ~strcmp(Parameters{kk},'scans')
                     ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,Parameters{kk}));
-                    OutStr = subfnConvertFieldToString(ParameterValue)
-                    fprintf(fid,'g.entity(''%s'',{''prov:type'':''parameter'',''prov:value'':''%s''})\n',Parameters{kk},OutStr);
-                    fprintf(fid,'g.used(''%s'',''%s'')\n',ProcessInput,Parameters{kk});
+                    OutStr = subfnConvertFieldToString(ParameterValue);
+                    structPath = sprintf('matlabbatch{%d}.%s.%s',i,ProcessInput,Parameters{kk});
+                    randValue = round(rand(1)*100000);
+                    fprintf(fid,'g.entity(''%s_%d'',{''prov:type'':''parameter'',''prov:value'':''%s'',''spm:structpath'':''%s''})\n',Parameters{kk},randValue,OutStr,structPath);
+                    fprintf(fid,'g.used(''%s'',''%s_%d'')\n',ProcessInput,Parameters{kk},randValue);
                 end
             end
                     
                     
             % OUTPUT
              Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'));
-            fprintf(fid,'g.entity(''%s'')\n','st_output');
-            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,'st_ouput')
+             randValue = round(rand(1)*100000);
+            fprintf(fid,'g.entity(''%s_%d'',{''prov:type'':''spm:structure''})\n','output',randValue);
+            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s_%d'')\n',ProcessInput,'ouput',randValue)
             for kk = 1:length(ListOfInPutImages{i})-1
                 [PathName FileName Ext] = fileparts(ListOfInPutImages{i}{kk}.Files);
                 ListOfOutPutImages{i}{kk}.Files = fullfile(PathName,[Prefix FileName Ext]);
                 ListOfOutPutImages{i}{kk}.Indices = ListOfInPutImages{i}{kk}.Indices;
                 fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',ListOfOutPutImages{i}{kk}.Files,ListOfOutPutImages{i}{kk}.Indices);
-                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','st_ouput',ListOfOutPutImages{i}{kk}.Files)
+                fprintf(fid,'g.wasDerivedFrom(''%s_%d'',''%s'')\n','ouput',randValue,ListOfOutPutImages{i}{kk}.Files)
             end
                    
             %         %%%%%%%%%%%%%%%%%%
