@@ -1,0 +1,18 @@
+---estwrite
+	|---data
+	|---eoptions
+	|	|---quality
+	|	|---sep
+	|	|---fwhm
+	|	|---rtm
+	|	|---interp
+	|	|---wrap
+	|	|---weight
+
+	|---roptions
+	|	|---which
+	|	|---interp
+	|	|---wrap
+	|	|---mask
+	|	|---prefix
+

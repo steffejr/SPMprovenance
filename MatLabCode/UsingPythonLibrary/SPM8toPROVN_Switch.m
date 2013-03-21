@@ -37,7 +37,7 @@ Nsteps = length(matlabbatch);
 % create an entity which each step is a member of
 fprintf(fid,'g.entity(''%s'')\n','matlabbatch');
 % create the different steps o fthe batch stream
-for i = 2%1:Nsteps
+for i = 1:3%1:Nsteps
     ListOfInPutImages{i} = {};
     ListOfOutPutImages{i} = {};
     % Set the flags for determining if output needs to be written
@@ -73,7 +73,7 @@ for i = 2%1:Nsteps
     fprintf(fid,'g.used(''%s'',''%s'')\n','matlabbatch',ProcessInput);
     %%%% PREPROC %%%%
     % Check to see if this is the preproc segment routine
-    switch Levels{end}
+    switch Levels{3}
         case 'preproc'
             %if strmatch(Levels{end},'preproc')
             % segment has three pieces
@@ -109,7 +109,7 @@ for i = 2%1:Nsteps
             fprintf(fid,'g.entity(''%s'',{''prov:type'':''bundle'',''spm:structpath'':''matlabbatch{%d}.%s.%s''})\n',entityName,i,ProcessInput,'opts');
             fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ProcessInput,entityName);
             for kk = 1:length(Parameters)
-                ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s.%s', i, ProcessInput, 'opts',Parameters{kk}))
+                ParameterValue = eval(sprintf('matlabbatch{%d}.%s.%s.%s', i, ProcessInput, 'opts',Parameters{kk}));
                 % Check to see if the parameter is itself a structure
                 if iscell(ParameterValue)
                     % create an entity with the parameter name. This entity is
@@ -180,7 +180,7 @@ for i = 2%1:Nsteps
                     OutStr = subfnConvertFieldToString(ParameterValue);
                     structPath = sprintf('matlabbatch{%d}.%s.%s',i,ProcessInput,Parameters{kk});
                     randValue = round(rand(1)*100000);
-                    fprintf(fid,'g.entity(''%s_%d'',{''prov:type'':''parameter'',''prov:value'':''%s'',''spm:structpath'':''%s''})\n',Parameters{kk},randValue,OutStr,structPath);
+                    fprintf(fid,'g.entity(''%s_%d'',{''prov:label'':''JASON'',''prov:type'':''parameter'',''prov:value'':''%s'',''spm:structpath'':''%s''})\n',Parameters{kk},randValue,OutStr,structPath);
                     fprintf(fid,'g.used(''%s'',''%s_%d'')\n',ProcessInput,Parameters{kk},randValue);
                 end
             end
@@ -188,17 +188,25 @@ for i = 2%1:Nsteps
                     
             % OUTPUT
              Prefix = eval(sprintf('matlabbatch{%d}.%s.%s', i, ProcessInput,'prefix'));
-             randValue = round(rand(1)*100000);
-            fprintf(fid,'g.entity(''%s_%d'',{''prov:type'':''spm:structure''})\n','output',randValue);
-            fprintf(fid,'g.wasDerivedFrom(''%s'',''%s_%d'')\n',ProcessInput,'ouput',randValue)
+            
             for kk = 1:length(ListOfInPutImages{i})-1
                 [PathName FileName Ext] = fileparts(ListOfInPutImages{i}{kk}.Files);
                 ListOfOutPutImages{i}{kk}.Files = fullfile(PathName,[Prefix FileName Ext]);
                 ListOfOutPutImages{i}{kk}.Indices = ListOfInPutImages{i}{kk}.Indices;
                 fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s''})\n',ListOfOutPutImages{i}{kk}.Files,ListOfOutPutImages{i}{kk}.Indices);
-                fprintf(fid,'g.wasDerivedFrom(''%s_%d'',''%s'')\n','ouput',randValue,ListOfOutPutImages{i}{kk}.Files)
+                fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n',ListOfOutPutImages{i}{kk}.Files,ProcessInput)
             end
                    
+            
+        case 'realign'
+            fprintf(1,'realign\n');
+            % realign contains some sub structures
+            ProcessInput = Levels{1};
+            for j = 2:3
+                ProcessInput = sprintf('%s.%s',ProcessInput,Levels{j});
+            end
+            nextLevel = eval(sprintf('matlabbatch{%d}.%s',i,ProcessInput))
+            isstruct(nextLevel)
             %         %%%%%%%%%%%%%%%%%%
             %         % for each activity find out what the parameters are for it
             %         Parameters = fieldnames(eval(['matlabbatch{' num2str(i) '}.' ProcessInput]));

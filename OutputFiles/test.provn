@@ -1,0 +1,11 @@
+document
+entity(height_threshold_param1,[prov:type="neurolex:threshold",
+		prov:type="neurolex:t-statistic",
+		prov:label="Height threshold",
+		prov:value="3.10"])
+entity(_:height_threshold_param2,[prov:type="neurolex:threshold",
+		prov:type="neurolex:t-statistic",
+		prov:label='Height threshold2',
+		prov:value="3.10"])		
+		
+endDocument
