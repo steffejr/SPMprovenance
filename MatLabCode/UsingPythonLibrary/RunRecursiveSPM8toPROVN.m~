@@ -14,6 +14,6 @@ ListOfInPutImages{Nsteps} = {};
 ListOfOutPutImages{Nsteps} = {};
 fid = 1;
 for i = 1:Nsteps
-
+    i = 5
     [ListOfInPutImages,ListOfOutPutImages] = fn_structdisp(matlabbatch{i},i,fid,ListOfInPutImages,ListOfOutPutImages);
 end
