@@ -88,12 +88,13 @@ else
             fprintf(1,'CELL >>> %s\n',X{1});
         end
         InputFiles = X;
-        [FileName Index] = subfnWriteImageEntity(InputFiles,step,fid,Xname);
-        % These are input images
-         for j = 1:length(FileName)
-             ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName{j};
-             ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index{j};
-         end
+%         [FileName Index] = subfnWriteImageEntity(InputFiles,step,fid,Xname);
+        [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(InputFiles,step,fid,Xname,ListOfInPutImages, ListOfOutPutImages);
+%         % These are input images
+%          for j = 1:length(FileName)
+%              ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName{j};
+%              ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index{j};
+%          end
 
         fprintf(1,'***** CASE 3\n');
         %% NEED TO ADD THE OUTPUT AND USED BY FIELDS
@@ -118,14 +119,15 @@ for i=1:nsub
     elseif size(a,1)<=ARRAYMAXROWS && size(a,2)<=ARRAYMAXCOLS && numel(a)<=ARRAYMAXELEMS
         %disp([subnames{i} ':'])
         %fprintf(1,'VALUE >>>%s: %s\n',subnames{i},num2str(a));
-        subfnWriteKeyValuePair(a,subnames{i},fid,step,ListOfInPutImages)
+        %ListOfOutPutImages = subfnWriteKeyValuePair(ParameterValue,entity,fid,step,ListOfInPutImages,ListOfOutPutImages)
+        ListOfOutPutImages = subfnWriteKeyValuePair(a,subnames{i},fid,step,ListOfInPutImages,ListOfOutPutImages);
         %fprintf(1,'Y(%d)=%s\n',i,num2str(a));
     end
 end
 
 
 
-function subfnWriteKeyValuePair(ParameterValue,entity,fid,step,ListOfInPutImages)
+function ListOfOutPutImages = subfnWriteKeyValuePair(ParameterValue,entity,fid,step,ListOfInPutImages,ListOfOutPutImages)
 entity = sprintf('matlabbatch{%d}%s',step,entity);
 entityValue = subfnConvertFieldToString(ParameterValue);
 % Split this into the entity and the full path
@@ -138,14 +140,18 @@ fprintf(fid,'g.used(''%s'',''%s'')\n',entityPath,entity);
 % Special case for when the parameter is the PREFIX. In this case output
 % images need to be created
 if strcmp(entityName,'prefix')
-    fprintf(1,' === PREFIX ===\n');
-    for j = 1:length(ListOfInPutImages{step})
-        [PathName FileName Ext] = fileparts(ListOfInPutImages{step}{j}.Files);
-        if ~strcmp(Ext,'.mat')
-            fprintf(1,'%s\n',fullfile(PathName, [entityValue FileName Ext]));
-        end
-    end
-    fprintf(1,' === END PREFIX ===\n');
+     fprintf(1,' === PREFIX ===\n');
+     PrefixedOutputFiles = {};
+     for j = 1:length(ListOfInPutImages{step})
+         [PathName FileName Ext] = fileparts(ListOfInPutImages{step}{j}.Files);
+         
+         if ~strcmp(Ext,'.mat')
+             ListOfOutPutImages{step}{length(ListOfOutPutImages{step})+1}.Files = fullfile(PathName, [entityValue FileName Ext]);
+             
+%             fprintf(1,'%s\n',fullfile(PathName, [entityValue FileName Ext]));
+         end
+     end
+     fprintf(1,' === END PREFIX ===\n');
     
 end
 
@@ -156,8 +162,16 @@ function [ListOfOutPutImages] = subfnWriteCollectionTypeEntity(X,entity,fid,step
 % output files are
 %fprintf(1,'===COLLECTION===\n');
 if strcmp(entity,'.spm.spatial.preproc.output')
-    [ListOfOutPutImages{step} OutputLabels] = subfnFindSegmentOutputs(ListOfInPutImages{step}{1}.Files,X);
-    [ListOfInPutImages] = subfnWriteImageEntity(ListOfOutPutImages{step},step,fid,entity);
+    [OutputFiles OutputLabels] = subfnFindSegmentOutputs(ListOfInPutImages{step}{1}.Files,X);
+    for kk = 1:length(OutputFiles)
+        % fprintf(fid,'g.entity(''%s'')\n',OutputFiles{kk});
+        ListOfOutPutImages{step}{length(ListOfOutPutImages{step})+1}.Files = OutputFiles{kk};
+        ListOfOutPutImages{step}{length(ListOfOutPutImages{step})}.Indices = 1;
+        % fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','output',OutputFiles{kk});
+    end
+
+    [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(OutputFiles,step,fid,entity,ListOfInPutImages, ListOfOutPutImages)
+    %[ListOfInPutImages] = subfnWriteImageEntity(ListOfOutPutImages{step},step,fid,entity);
 end
 entity = sprintf('matlabbatch{%d}%s',step,entity);
 fDOT = findstr(entity,'.');
@@ -168,46 +182,105 @@ fprintf(fid,'g.used(''%s'',''%s'')\n',entityPath,entity);
 %fprintf(1,'===END COLLECTION===\n');
 
 
-function [FileName Index] = subfnWriteImageEntity(InputFiles,step,fid,Xname)
-% WORK IN HERE TO READ A LIST OF IMAGES AND COMBINE THEM ACCORDING TO THEIR
-% NAMES AND INDICES
-
-Index = cell(length(InputFiles),1);
-FileName = cell(length(InputFiles),1);
-for kk = 1:length(InputFiles)
-    if iscell(InputFiles{kk})
-        Index{kk} = '';
-        for m = 1:length(InputFiles{kk})
-            % add a string which indexes the 3D image in a 4D image
-            Commas = findstr(InputFiles{kk}{m},',');
-            
-            if ~isempty(Commas)
-                tempFile = InputFiles{kk}{m}(1:findstr(InputFiles{kk}{m},',')-1);
-                Index{kk} = [Index{kk} InputFiles{kk}{m}(findstr(InputFiles{kk}{m},',')+1:end) ';'];
-            else
-                tempFile = InputFile{m};
-                Index{kk} = '';
+function [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(InputFiles,step,fid,Xname,ListOfInPutImages, ListOfOutPutImages)
+% This is ugly code and may benefit from a recursive call to itself for
+% each entry into a structure of structures of image names.
+if iscell(InputFiles{1})
+    for i = 1:length(InputFiles)
+        [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles{i});
+        
+        for mm = 1:length(UniqueImages)
+            for kk = 1:length(ListOfOutPutImages{step})
+                % see if the filename is the same
+                if strcmp(UniqueImages{mm},ListOfOutPutImages{step}{kk}.Files)
+                    % then check to see if the indices
+                    % are the same
+                    %            fprintf(1,'Found a dependency: %s\n\t%s\n',ProcessInput,UniqueImages{mm});
+                end
             end
         end
-        FileName{kk} = tempFile;
-        fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',FileName{kk},Index{kk},step,Xname);
-%        ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName;
-%        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index;
-    else
-        Index{kk} = '';
-        Commas = findstr(InputFiles{kk},',');
-        if ~isempty(Commas)
-            tempFile = InputFiles{kk}(1:findstr(InputFiles{kk},',')-1);
-            Index{kk} = [Index{kk} InputFiles{kk}(findstr(InputFiles{kk},',')+1:end) ';'];
-        else
-            tempFile = InputFiles{kk};
-            Index{kk} = '';
+        
+        % Add the image to the PROV structure and to the list of
+        % input images
+        for m = 1:length(UniqueImages)
+            OutStr = subfnConvertFieldToString(ListOfIndices{m});
+            fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',UniqueImages{m},OutStr,step,Xname);
+            
+            %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
+            %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
+            ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = UniqueImages{m};
+            ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
         end
-        FileName{kk} = tempFile;
-        fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',FileName{kk},Index{kk},step,Xname);
-        % fprintf(fid,'g.used(''%s'',''%s'')\n','scans',tempFile);
-%        ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName;
-%        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index;
+    end
+else
+    [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles);
+    for mm = 1:length(UniqueImages)
+        for kk = 1:length(ListOfOutPutImages{step})
+            % see if the filename is the same
+            if strcmp(UniqueImages{mm},ListOfOutPutImages{step}{kk}.Files)
+                % then check to see if the indices
+                % are the same
+                %            fprintf(1,'Found a dependency: %s\n\t%s\n',ProcessInput,UniqueImages{mm});
+            end
+        end
+    end
+    
+    % Add the image to the PROV structure and to the list of
+    % input images
+    for m = 1:length(UniqueImages)
+        OutStr = subfnConvertFieldToString(ListOfIndices{m});
+        fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',UniqueImages{m},OutStr,step,Xname);
+        
+        %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
+        %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
+        ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = UniqueImages{m};
+        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
     end
 end
+            
+% [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles)
+% 
+% for kk = 1:length(UniqueImages)
+%     fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',UniqueImages{kk},ListOfIndices{kk},step,Xname);
+% end
+% 
+% Index = cell(length(InputFiles),1);
+% FileName = cell(length(InputFiles),1);
+% 
+% for kk = 1:length(InputFiles)
+%     if iscell(InputFiles{kk})
+%         Index{kk} = '';
+%         for m = 1:length(InputFiles{kk})
+%             % add a string which indexes the 3D image in a 4D image
+%             Commas = findstr(InputFiles{kk}{m},',');
+%             
+%             if ~isempty(Commas)
+%                 tempFile = InputFiles{kk}{m}(1:findstr(InputFiles{kk}{m},',')-1);
+%                 Index{kk} = [Index{kk} InputFiles{kk}{m}(findstr(InputFiles{kk}{m},',')+1:end) ';'];
+%             else
+%                 tempFile = InputFile{m};
+%                 Index{kk} = '';
+%             end
+%         end
+%         FileName{kk} = tempFile;
+%         fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',FileName{kk},Index{kk},step,Xname);
+% %        ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName;
+% %        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index;
+%     else
+%         Index{kk} = '';
+%         Commas = findstr(InputFiles{kk},',');
+%         if ~isempty(Commas)
+%             tempFile = InputFiles{kk}(1:findstr(InputFiles{kk},',')-1);
+%             Index{kk} = [Index{kk} InputFiles{kk}(findstr(InputFiles{kk},',')+1:end) ';'];
+%         else
+%             tempFile = InputFiles{kk};
+%             Index{kk} = '';
+%         end
+%         FileName{kk} = tempFile;
+%         fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch{%d}%s''})\n',FileName{kk},Index{kk},step,Xname);
+%         % fprintf(fid,'g.used(''%s'',''%s'')\n','scans',tempFile);
+% %        ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = FileName;
+% %        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = Index;
+%     end
+% end
 
