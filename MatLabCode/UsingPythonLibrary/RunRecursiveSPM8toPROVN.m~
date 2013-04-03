@@ -34,8 +34,11 @@ fprintf(fid,'g.entity(''%s'')\n','matlabbatch');
 for i = 1:Nsteps
     [ListOfInPutImages,ListOfOutPutImages] = fn_structdisp(matlabbatch{i},i,fid,ListOfInPutImages,ListOfOutPutImages);
     % after each step make sure to link it to the master entity
-    fprintf(
-    
+    stepName = fieldnames(matlabbatch{i});
+    fprintf(fid,'g.used(''%s'',''matlabbatch%d.%s'')\n','matlabbatch',i,stepName{1});
+     if i > 2
+         fprintf(fid,'g.wasInfluencedBy(''matlabbatch%d.%s'',''matlabbatch%d.%s'')\n',i-1,stepName{1},i,stepName{1});
+     end
 end
 PROVNoutfile = fullfile(OutDir,[inFileName 'RECURSIVE.provn']);
 SVGOutFile = fullfile(OutDir,[inFileName '.svg']);

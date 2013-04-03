@@ -36,6 +36,9 @@ for i = 1:Nsteps
     % after each step make sure to link it to the master entity
     stepName = fieldnames(matlabbatch{i});
     fprintf(fid,'g.used(''%s'',''matlabbatch%d.%s'')\n','matlabbatch',i,stepName{1});
+     if i > 2
+         fprintf(fid,'g.wasInfluencedBy(''matlabbatch%d.%s'',''matlabbatch%d.%s'')\n',i,stepName{1},i-1,stepName{1});
+     end
 end
 PROVNoutfile = fullfile(OutDir,[inFileName 'RECURSIVE.provn']);
 SVGOutFile = fullfile(OutDir,[inFileName '.svg']);
