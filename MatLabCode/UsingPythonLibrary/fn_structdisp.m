@@ -189,33 +189,26 @@ function [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(InputFi
 % each entry into a structure of structures of image names.
 if isfield(InputFiles,'Files')
     OutStr = subfnConvertFieldToString(InputFiles.Indices);
+    MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,InputFiles.Files);
+            
      fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,InputFiles.Files,OutStr,step,Xname);
 elseif iscell(InputFiles{1})
     for i = 1:length(InputFiles)
         [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles{i});
         
-        for mm = 1:length(UniqueImages)
-            for kk = 1:length(ListOfOutPutImages{step})
-                % see if the filename is the same
-                if strcmp(UniqueImages{mm},ListOfOutPutImages{step}{kk}.Files)
-                    % then check to see if the indices
-                    % are the same
-                    %            fprintf(1,'Found a dependency: %s\n\t%s\n',ProcessInput,UniqueImages{mm});
-                end
-            end
-        end
-        
         % Add the image to the PROV structure and to the list of
         % input images
-        for m = 1:length(UniqueImages)
-            OutStr = subfnConvertFieldToString(ListOfIndices{m});
+       for m = 1:length(UniqueImages)
+           OutStr = subfnConvertFieldToString(ListOfIndices{m});
+    %        MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,UniqueImages{m});
+                        
             fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,UniqueImages{m},OutStr,step,Xname);
             
             %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
             %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
             ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = UniqueImages{m};
             ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
-        end
+       end
     end
 else
     [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles);
@@ -234,6 +227,9 @@ else
     % input images
     for m = 1:length(UniqueImages)
         OutStr = subfnConvertFieldToString(ListOfIndices{m});
+        
+       % MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,UniqueImages{m});
+            
         fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,UniqueImages{m},OutStr,step,Xname);
         
         %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
@@ -242,15 +238,54 @@ else
         ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
     end
 end
+         
+
+function MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,SearchImage)
+MatchImage = '';
+
+% Check to see if this input image is already in the
+% ListOfInputImages
+for kk = 1:length(ListOfInPutImages)
+    try
+    if ~isempty(ListOfInPutImages{kk})
+        for jj = 1:length(ListOfInPutImages{kk})
+            if strcmp(SearchImage,ListOfInPutImages{kk}{jj}.Files)
+                fprintf(1,'HELLO -- FOUND INPUT MATCH\n');
+                MatchImage = SearchImage;
+            end
+        end
+    end
+    catch
+        fprintf(1,'IN: %s, jj=%d, kk=%d\n',SearchImage,jj,kk);
+    end
+end
+for kk = 1:length(ListOfOutPutImages)
+    
+    if ~isempty(ListOfOutPutImages{kk})
+        try
+            for jj = 1:length(ListOfOutPutImages{kk})
+                
+                if strcmp(SearchImage,ListOfOutPutImages{kk}{jj}.Files)
+                    fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s\n',SearchImage);
+                    MatchImage = SearchImage;
+                end
+            end
+        catch
+            fprintf(1,'OUT: %s, jj=%d, kk=%d\n',SearchImage,jj,kk);
+        end
+    end
+    
+end
+
             
-% [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles)
-% 
-% for kk = 1:length(UniqueImages)
-%     fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',UniqueImages{kk},ListOfIndices{kk},step,Xname);
-% end
-% 
-% Index = cell(length(InputFiles),1);
-% FileName = cell(length(InputFiles),1);
+            % [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles)
+            %
+            % for kk = 1:length(UniqueImages)
+            %     fprintf(fid,'g.entity(''%s'',{''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',UniqueImages{kk},ListOfIndices{kk},step,Xname);
+            % end
+            %
+            % Index = cell(length(InputFiles),1);
+            % FileName = cell(length(InputFiles),1);
 % 
 % for kk = 1:length(InputFiles)
 %     if iscell(InputFiles{kk})
