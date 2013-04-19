@@ -140,20 +140,35 @@ fprintf(fid,'g.used(''%s'',''%s'')\n',entityPath,entity);
 % Special case for when the parameter is the PREFIX. In this case output
 % images need to be created
 if strcmp(entityName,'prefix')
-%     fprintf(1,' === PREFIX ===\n');
-     PrefixedOutputFiles = {};
-     for j = 1:length(ListOfInPutImages{step})
-         [PathName FileName Ext] = fileparts(ListOfInPutImages{step}{j}.Files);
-         
-         if ~strcmp(Ext,'.mat')
-             ListOfOutPutImages{step}{j}.Files = fullfile(PathName, [entityValue FileName Ext]);
-             ListOfOutPutImages{step}{j}.Indices = ListOfInPutImages{step}{j}.Indices;
-             [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(ListOfOutPutImages{step}{j},step,fid,'.OUTPUT',ListOfInPutImages, ListOfOutPutImages);
-
-             %             fprintf(1,'%s\n',fullfile(PathName, [entityValue FileName Ext]));
-         end
-     end
-%     fprintf(1,' === END PREFIX ===\n');
+    %     fprintf(1,' === PREFIX ===\n');
+    PrefixedOutputFiles = {};
+    for j = 1:length(ListOfInPutImages{step})
+        [PathName FileName Ext] = fileparts(ListOfInPutImages{step}{j}.Files);
+        
+        if ~strcmp(Ext,'.mat')
+            
+            ListOfOutPutImages{step}{j}.Files = fullfile(PathName, [entityValue FileName Ext]);
+            ListOfOutPutImages{step}{j}.Indices = ListOfInPutImages{step}{j}.Indices;
+            ListOfOutPutImages{step}{j}.Entity = entity;
+            
+            MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,ListOfInPutImages{step}{j}.Files);
+%             if ~isempty(MatchImage)
+%                 fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s, from: %s\n',MatchImage.Files,MatchImage.Entity);
+%                 fprintf(1,'%s\n',entity);
+%                 %''matlabbatch%d%s''
+%   %              'g.used(''matlabbatch%d%s'',''%s''
+%             else
+%                 
+                [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(ListOfOutPutImages{step}{j},step,fid,'.OUTPUT',ListOfInPutImages, ListOfOutPutImages);
+                %             fprintf(1,'%s\n',fullfile(PathName, [entityValue FileName Ext]));
+%             end
+        else
+            ListOfOutPutImages{step}{j}.Files = ListOfInPutImages{step}{j}.Files;
+            ListOfOutPutImages{step}{j}.Indices = ListOfInPutImages{step}{j}.Indices;
+            ListOfOutPutImages{step}{j}.Entity = entity;
+        end
+    end
+    %     fprintf(1,' === END PREFIX ===\n');
     
 end
 
@@ -165,14 +180,17 @@ function [ListOfOutPutImages] = subfnWriteCollectionTypeEntity(X,entity,fid,step
 %fprintf(1,'===COLLECTION===\n');
 if strcmp(entity,'.spm.spatial.preproc.output')
     [OutputFiles OutputLabels] = subfnFindSegmentOutputs(ListOfInPutImages{step}{1}.Files,X);
+    
+    [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(OutputFiles,step,fid,entity,ListOfInPutImages, ListOfOutPutImages);
+    
     for kk = 1:length(OutputFiles)
         % fprintf(fid,'g.entity(''%s'')\n',OutputFiles{kk});
         ListOfOutPutImages{step}{length(ListOfOutPutImages{step})+1}.Files = OutputFiles{kk};
         ListOfOutPutImages{step}{length(ListOfOutPutImages{step})}.Indices = 1;
+        
         % fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','output',OutputFiles{kk});
     end
 
-    [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(OutputFiles,step,fid,entity,ListOfInPutImages, ListOfOutPutImages);
     %[ListOfInPutImages] = subfnWriteImageEntity(ListOfOutPutImages{step},step,fid,entity);
 end
 entity = sprintf('matlabbatch%d%s',step,entity);
@@ -187,11 +205,24 @@ fprintf(fid,'g.used(''%s'',''%s'')\n',entityPath,entity);
 function [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(InputFiles,step,fid,Xname,ListOfInPutImages, ListOfOutPutImages)
 % This is ugly code and may benefit from a recursive call to itself for
 % each entry into a structure of structures of image names.
+
+% Whenever I write and image entity I need to first check the list of input
+% and output files to see if the requested image is already an entity. If
+% it already is an entity then I just need to "use" it.
+%
 if isfield(InputFiles,'Files')
     OutStr = subfnConvertFieldToString(InputFiles.Indices);
+    fprintf(1,'===== step: %d ====\n',step);
+    
     MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,InputFiles.Files);
-            
-     fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,InputFiles.Files,OutStr,step,Xname);
+    if ~isempty(MatchImage)
+        if MatchImage.step ~= step
+            % I have this problem where the matching is finding a match to the
+            % image I am searching for in the same step.
+            fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s, from: %s\n',MatchImage.Files,MatchImage.Entity);
+        end
+    end
+    fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,InputFiles.Files,OutStr,step,Xname);
 elseif iscell(InputFiles{1})
     for i = 1:length(InputFiles)
         [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles{i});
@@ -241,33 +272,38 @@ end
          
 
 function MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,SearchImage)
-MatchImage = '';
+MatchImage = {};
 
 % Check to see if this input image is already in the
 % ListOfInputImages
-for kk = 1:length(ListOfInPutImages)
-    try
-    if ~isempty(ListOfInPutImages{kk})
-        for jj = 1:length(ListOfInPutImages{kk})
-            if strcmp(SearchImage,ListOfInPutImages{kk}{jj}.Files)
-                fprintf(1,'HELLO -- FOUND INPUT MATCH\n');
-                MatchImage = SearchImage;
-            end
-        end
-    end
-    catch
-        fprintf(1,'IN: %s, jj=%d, kk=%d\n',SearchImage,jj,kk);
-    end
-end
+% for kk = 1:length(ListOfInPutImages)
+%     try
+%     if ~isempty(ListOfInPutImages{kk})
+%         for jj = 1:length(ListOfInPutImages{kk})
+%             if strcmp(SearchImage,ListOfInPutImages{kk}{jj}.Files)
+%                 fprintf(1,'HELLO -- FOUND INPUT MATCH: %s \n',SearchImage);
+%                 MatchImage = SearchImage;
+%             end
+%         end
+%     end
+%     catch
+%         fprintf(1,'IN: %s, jj=%d, kk=%d\n',SearchImage,jj,kk);
+%     end
+% end
 for kk = 1:length(ListOfOutPutImages)
-    
     if ~isempty(ListOfOutPutImages{kk})
         try
             for jj = 1:length(ListOfOutPutImages{kk})
                 
                 if strcmp(SearchImage,ListOfOutPutImages{kk}{jj}.Files)
-                    fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s\n',SearchImage);
-                    MatchImage = SearchImage;
+                    %fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s\n',SearchImage);
+                    MatchImage.Files = SearchImage;
+                    MatchImage.Entity = ListOfOutPutImages{kk}{jj}.Entity;
+                    % Find step
+                    fDOT = findstr(ListOfOutPutImages{kk}{jj}.Entity,'.');
+                    step = ListOfOutPutImages{kk}{jj}.Entity(length('matlabbatch')+1:fDOT(1)-1);
+                    %step = ListOfOutPutImages{kk}{jj}.Entity(fDOT
+                    MatchImage.step = str2num(step);
                 end
             end
         catch
