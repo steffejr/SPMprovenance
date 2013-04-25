@@ -149,7 +149,7 @@ if strcmp(entityName,'prefix')
             
             ListOfOutPutImages{step}{j}.Files = fullfile(PathName, [entityValue FileName Ext]);
             ListOfOutPutImages{step}{j}.Indices = ListOfInPutImages{step}{j}.Indices;
-            ListOfOutPutImages{step}{j}.Entity = entity;
+            ListOfOutPutImages{step}{j}.Entity = sprintf('matlabbatch%d%s',step,entity);
             
             MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,ListOfInPutImages{step}{j}.Files);
 %             if ~isempty(MatchImage)
@@ -165,7 +165,7 @@ if strcmp(entityName,'prefix')
         else
             ListOfOutPutImages{step}{j}.Files = ListOfInPutImages{step}{j}.Files;
             ListOfOutPutImages{step}{j}.Indices = ListOfInPutImages{step}{j}.Indices;
-            ListOfOutPutImages{step}{j}.Entity = entity;
+            ListOfOutPutImages{step}{j}.Entity = sprintf('matlabbatch%d%s',step,entity);
         end
     end
     %     fprintf(1,' === END PREFIX ===\n');
@@ -187,7 +187,7 @@ if strcmp(entity,'.spm.spatial.preproc.output')
         % fprintf(fid,'g.entity(''%s'')\n',OutputFiles{kk});
         ListOfOutPutImages{step}{length(ListOfOutPutImages{step})+1}.Files = OutputFiles{kk};
         ListOfOutPutImages{step}{length(ListOfOutPutImages{step})}.Indices = 1;
-        
+        ListOfOutPutImages{step}{length(ListOfOutPutImages{step})}.Entity = sprintf('matlabbatch%d%s',step,entity);
         % fprintf(fid,'g.wasDerivedFrom(''%s'',''%s'')\n','output',OutputFiles{kk});
     end
 
@@ -214,15 +214,15 @@ if isfield(InputFiles,'Files')
     OutStr = subfnConvertFieldToString(InputFiles.Indices);
     fprintf(1,'===== step: %d ====\n',step);
     
-    MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,InputFiles.Files);
-    if ~isempty(MatchImage)
-        if MatchImage.step ~= step
-            % I have this problem where the matching is finding a match to the
-            % image I am searching for in the same step.
-            fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s, from: %s\n',MatchImage.Files,MatchImage.Entity);
-        end
-    end
-    fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,InputFiles.Files,OutStr,step,Xname);
+    %MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,InputFiles.Files);
+%     if ~isempty(MatchImage)
+%         if MatchImage.step ~= step
+%             % I have this problem where the matching is finding a match to the
+%             % image I am searching for in the same step.
+%             fprintf(1,'HELLO -- FOUND OUTPUT MATCH: %s, from: %s\n',MatchImage.Files,MatchImage.Entity);
+%         end
+%     end
+  %  fprintf(fid,'g.entity(''%s'',{''prov:label'':''matlabbatch%d%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',InputFiles.Files,step,Xname,OutStr,step,Xname);
 elseif iscell(InputFiles{1})
     for i = 1:length(InputFiles)
         [UniqueImages ListOfIndices] = subfnFindUniqueFiles(InputFiles{i});
@@ -233,12 +233,13 @@ elseif iscell(InputFiles{1})
            OutStr = subfnConvertFieldToString(ListOfIndices{m});
     %        MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,UniqueImages{m});
                         
-            fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,UniqueImages{m},OutStr,step,Xname);
+  %          fprintf(fid,'g.entity(''%s'',{''prov:label'':''matlabbatch%d%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',UniqueImages{m},step,Xname,OutStr,step,Xname);
             
             %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
             %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
             ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = UniqueImages{m};
             ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
+            ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Entity = sprintf('matlabbatch%d%s',step,Xname);
        end
     end
 else
@@ -261,12 +262,13 @@ else
         
        % MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,UniqueImages{m});
             
-        fprintf(fid,'g.entity(''matlabbatch%d%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',step,Xname,UniqueImages{m},OutStr,step,Xname);
+%        fprintf(fid,'g.entity(''%s'',{''prov:label'':''matlabbatch%d%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''matlabbatch%d%s''})\n',UniqueImages{m},step,Xname,OutStr,step,Xname);
         
         %                    input_id = calllib('libneuroprov','newProcessInput',p_prov,p_proc,'Input NIFTI',UniqueImages{m},OutStr);
         %                    ListOfInPutImages{i}{length(ListOfInPutImages{i})+1}.Ptr = input_id;
         ListOfInPutImages{step}{length(ListOfInPutImages{step})+1}.Files = UniqueImages{m};
         ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Indices = ListOfIndices{m};
+        ListOfInPutImages{step}{length(ListOfInPutImages{step})}.Entity = sprintf('matlabbatch%d%s',step,Xname);
     end
 end
          
