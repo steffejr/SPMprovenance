@@ -1,8 +1,15 @@
 BaseDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
 InFile = 'TestPreProcessSHORT_FilledInJobRECURSIVE.provn';
+% InFile = 'SegmentONLYJob_FilledInJobRECURSIVE.provn';
+% InFile = 'TestSliceTimeRECURSIVE.provn';
+% InFile = 'TestRealignRECURSIVE.provn';
+% InFile = 'TestCoRegRECURSIVE.provn';
+% InFile = 'TestNormalizeRECURSIVE.provn';
+% InFile = 'TestSmoothRECURSIVE.provn';
+InFile = 'TestSegmentSliceTimeRealignCoregNormRECURSIVE.provn';
+InFile = 'TestSegmentSliceTimeRealignCoregNormSmoothRECURSIVE.provn';
 
 D = textread(fullfile(BaseDir,InFile),'%s','delimiter','\n');
-
 
 %% rebuild the matlabbatch structure from the PROVN file
 N = length(D);
@@ -14,10 +21,11 @@ for i = 1:N
     temp = D{i};
     % find entities
     SearchWord = 'entity';
-    
+    % This looks through the PROVN file for entities
     if ~isempty(strfind(temp,SearchWord)==1)
         %       fprintf(1,'%s\n',temp);
         % check to see if the entities are part of the structure
+     %   fprintf(1,'ENTITY: %s\n',temp)
         temp = temp(length(SearchWord)+2:end-1);
         findStr = strfind(temp,StructName)==1;
         if findStr(1) == 1
@@ -26,8 +34,10 @@ for i = 1:N
             if length(temp) == (length(StructName)+1)
                 % find which step this is
                 step = str2num(temp(length(StructName)+1:end));
-                eval(sprintf('%s{%d}={};',StructName,step));
-                fprintf(1,'%s\n',temp);
+                Str = sprintf('%s{%d}={};',StructName,step);
+                eval(Str);
+                fprintf(1,'CHUNK 1: %s\n',Str);
+                %fprintf(1,'%s\n',temp);
                 % find structure name path
             elseif length(temp)>(length(StructName)+1)
                 % find the step again
@@ -43,7 +53,9 @@ for i = 1:N
                     subStructValue = temp(findProvValue+findProvValueQuotes(1):...
                         findProvValue+findProvValueQuotes(2)-2);
                     subStructValue = str2num(subStructValue);
-                    eval(sprintf('%s{%d}%s=%s;',StructName,step,subStructPath,'subStructValue'))
+                    Str = sprintf('%s{%d}%s=%s;',StructName,step,subStructPath,'subStructValue');
+                    eval(Str)
+                    fprintf(1,'CHUNK 2: %s\n',Str);
                     % else
                     % fprintf(1,'%s\n',temp);
                 end
@@ -79,14 +91,42 @@ for i = 1:N
                     % the names
                     dataArray = cell(length(subStructValue),1);
                     for k = 1:length(subStructValue)
-                        dataArray{k}=sprintf('%s,%d\n',subStructImageName,subStructValue(k));
+                        % make sure to only add the numeric suffix to image
+                        % files
+                        [PathName FileName Ext] = fileparts(deblank(subStructImageName));
+                        if ~strmatch(Ext,'.mat')
+                            dataArray{k}=deblank(sprintf('%s,%d\n',deblank(subStructImageName),subStructValue(k)));
+                        else
+                            dataArray{k}=deblank(sprintf('%s\n',deblank(subStructImageName)));
+                        end
                     end
-                    Str = sprintf('%s{%d}%s=%s;',StructName,step,subStructPath,'dataArray');
-                    fprintf(1,'%s\n',Str);
-                    eval(Str)
-                    % also check to see if it is an output image from the preproc
-                    % step since that is also a derived image
-                    fprintf(1,'%s\n',temp);
+                    % Check to see if this is the preproc step. If so then
+                    % do not write the output images to the matlabbatch
+                    % structure because they are interpretted images and
+                    % not explicitly defined.
+                    if findstr(subStructPath,'preproc.output')
+                        fprintf(1,'FOUND PREPROC OUTPUT\n');
+                    else
+                        % The definition of the data here is put into
+                        % brackets. This works for the following steps:
+                        % slice timing, realignment
+                        % but not for 
+                        % coregistration
+                        if ~isempty(strfind(subStructPath,'spatial.preproc'))||...
+                                ~isempty(strfind(subStructPath,'spatial.coreg'))||...
+                                ~isempty(strfind(subStructPath,'spatial.normalise'))||...
+                                ~isempty(strfind(subStructPath,'spatial.smooth'))
+                            % notice the absence of teh brackets after the
+                            % equal sign
+                            Str = sprintf('%s{%d}%s=%s;',StructName,step,subStructPath,'dataArray');
+                            fprintf(1,'CHUNK 3: %s\n',Str);
+                            eval(Str)
+                        else
+                            Str = sprintf('%s{%d}%s={%s};',StructName,step,subStructPath,'dataArray');
+                            fprintf(1,'CHUNK 3: %s\n',Str);
+                            eval(Str)
+                        end
+                    end
                 end
             end
         end

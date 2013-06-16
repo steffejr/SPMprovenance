@@ -24,7 +24,10 @@ else
     Xname = inputname(1);
 end
 
-if ~isstruct(X), error('argument should be a structure or the name of a structure'), end
+if ~isstruct(X)
+    error('argument should be a structure or the name of a structure')
+end
+
 [ListOfInPutImages,ListOfOutPutImages]=rec_structdisp(Xname,X,fid,step,ListOfInPutImages,ListOfOutPutImages);
 
 %---------------------------------
@@ -44,7 +47,7 @@ CELLRECURSIVE = false;
 %----- PARAMETERS END -------%
 
 %disp([Xname ':'])
-% fprintf(1,'STRUCT >> %s\n',Xname);
+fprintf(1,'STRUCT >> %s\n',Xname);
 if length(findstr(Xname,'.'))>0
     [ListOfOutPutImages] = subfnWriteCollectionTypeEntity(X,Xname,fid,step,ListOfInPutImages,ListOfOutPutImages);
 end
@@ -52,6 +55,7 @@ end
 %fprintf('\b')
 
 if isstruct(X) || isobject(X)
+    fprintf(1,'if isstruct(X) || isobject(X)\n');
     F = fieldnames(X);
     nsub = length(F);
     Y = cell(1,nsub);
@@ -61,7 +65,7 @@ if isstruct(X) || isobject(X)
         Y{i} = X.(f);
         subnames{i} = [Xname '.' f];
     end
-  %  fprintf(1,'***** CASE 1\n');
+    fprintf(1,'***** CASE 1\n');
 elseif CELLRECURSIVE && iscell(X)
     nsub = numel(X);
     s = size(X);
@@ -77,7 +81,7 @@ elseif CELLRECURSIVE && iscell(X)
         subnames{i} = [Xname '{' num2str(inds,'%i,')];
         subnames{i}(end) = '}';
     end
- %   fprintf(1,'***** CASE 2\n');
+    fprintf(1,'***** CASE 2\n');
 else
         InputFiles = X;
         [ListOfInPutImages, ListOfOutPutImages] = subfnWriteImageEntity(InputFiles,step,fid,Xname,ListOfInPutImages, ListOfOutPutImages);
@@ -88,6 +92,7 @@ end
 for i=1:nsub
     a = Y{i};
     if isstruct(a) || isobject(a)
+        fprintf(1,'a is a STRUCTURE\n')
         if length(a)==1
             [ListOfInPutImages,ListOfOutPutImages]=rec_structdisp(subnames{i},a,fid,step,ListOfInPutImages,ListOfOutPutImages);
         else
@@ -96,11 +101,20 @@ for i=1:nsub
             end
         end
     elseif iscell(a)
+        fprintf(1,'a is a CELL\n')
         if size(a,1)<=CELLMAXROWS && size(a,2)<=CELLMAXCOLS && numel(a)<=CELLMAXELEMS
             [ListOfInPutImages,ListOfOutPutImages]=rec_structdisp(subnames{i},a,fid,step,ListOfInPutImages,ListOfOutPutImages);
         end
     elseif size(a,1)<=ARRAYMAXROWS && size(a,2)<=ARRAYMAXCOLS && numel(a)<=ARRAYMAXELEMS
+        fprintf(1,'a is an ARRAY\n')
         ListOfOutPutImages = subfnWriteKeyValuePair(a,subnames{i},fid,step,ListOfInPutImages,ListOfOutPutImages);
+    else
+        fprintf(1,'a is SOMETHING ELSE\n')
+        % 'a' is an array, like in the case of slice order in the slice
+        % order for slice timing correction.
+        ListOfOutPutImages = subfnWriteKeyValuePair(a,subnames{i},fid,step,ListOfInPutImages,ListOfOutPutImages);
+
+        
     end
 end
 
@@ -108,6 +122,7 @@ end
 
 function ListOfOutPutImages = subfnWriteKeyValuePair(ParameterValue,entity,fid,step,ListOfInPutImages,ListOfOutPutImages)
 entity = sprintf('matlabbatch%d%s',step,entity);
+fprintf(1,'ENTITY >>> %s\n',entity);
 entityValue = subfnConvertFieldToString(ParameterValue);
 % Split this into the entity and the full path
 fDOT = findstr(entity,'.');

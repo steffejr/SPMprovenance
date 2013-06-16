@@ -1,8 +1,19 @@
 clear
 PythonCode='/Users/jason/Documents/ProvenanceTools/SPMprovenance/MatLabCode/UsingPythonLibrary';
 addpath(PythonCode)
-
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestPreProcessSHORT_FilledInJob.m';
+% Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSliceTime.m';
+% Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestRealign.m';
+% Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestCoReg.m';
+% Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestNormalize.m';
+% Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSmooth.m';
+Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealign.m';
+Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNorm.m';
+Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNormSmooth.m';
+
+%InFile = spm_select(1)
+
+%Infile = '/Users/jason/Documents/ProvenanceTools/ProvenanceLibrary/SPMJobs/SegmentONLYJob_FilledInJob.m';
 OutDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
 % load the input job
 [inPathName inFileName] = fileparts(Infile);
@@ -59,26 +70,36 @@ for i = 1:length(ListOfOutPutImages)
     end
 end
 %% WRITE THE INPUT IMAGES
+%fid =1
 
 
 for i = 1:length(ListOfInPutImages)
     for j = 1:length(ListOfInPutImages{i})
         fprintf(1,'%s\n',ListOfInPutImages{i}{j}.Files);
         MatchImage = subfnFindMatch(ListOfInPutImages,ListOfOutPutImages,ListOfInPutImages{i}{j}.Files);
+        % Check to see if this input image was the output of a previous
+        % step.
         if ~isempty(MatchImage)
             fprintf(1,'MATCH\n');
             OutStr = subfnConvertFieldToString(ListOfInPutImages{i}{j}.Indices);
             fprintf(fid,'g.entity(''%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''%s''})\n',ListOfInPutImages{i}{j}.Files,ListOfInPutImages{i}{j}.Entity,OutStr,ListOfInPutImages{i}{j}.Entity);
             fprintf(fid,'g.used(''%s'',''%s'')\n',ListOfInPutImages{i}{j}.Files,ListOfInPutImages{i}{j}.Entity);
+        else
+            
+            OutStr = subfnConvertFieldToString(ListOfInPutImages{i}{j}.Indices);
+            fprintf(fid,'g.entity(''%s'',{''prov:label'':''%s'',''prov:type'':''ImageIndex'',''prov:value'':''%s'',''spm:structpath'':''%s''})\n',ListOfInPutImages{i}{j}.Files,ListOfInPutImages{i}{j}.Entity,OutStr,ListOfInPutImages{i}{j}.Entity);
+            fprintf(fid,'g.used(''%s'',''%s'')\n',ListOfInPutImages{i}{j}.Files,ListOfInPutImages{i}{j}.Entity);
+
         end
     end
 end
+
 %%
 PROVNoutfile = fullfile(OutDir,[inFileName 'RECURSIVE.provn']);
 SVGOutFile = fullfile(OutDir,[inFileName '.svg']);
-fprintf(fid,'with open(''%s'', ''wt'') as fp:fp.writelines(g.get_provn())\n',PROVNoutfile)
+fprintf(fid,'with open(''%s'', ''wt'') as fp:fp.writelines(g.get_provn())\n',PROVNoutfile);
 % close the file
-fclose(fid)
+fclose(fid);
 % run it through python
-python(Outfile)
+python(Outfile);
 

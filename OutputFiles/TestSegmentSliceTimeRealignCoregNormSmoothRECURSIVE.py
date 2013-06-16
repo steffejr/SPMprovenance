@@ -272,4 +272,4 @@ g.entity('/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/wmeanaECF_r
 g.used('/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/wmeanaECF_r1_P00004218_S0001.nii','matlabbatch6.spm.spatial.smooth.data')
 g.entity('/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/waECF_r2_P00004218_S0001.nii',{'prov:label':'matlabbatch6.spm.spatial.smooth.data','prov:type':'ImageIndex','prov:value':'[ 1 2 3 4 5 6 7 8 9 10]','spm:structpath':'matlabbatch6.spm.spatial.smooth.data'})
 g.used('/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/waECF_r2_P00004218_S0001.nii','matlabbatch6.spm.spatial.smooth.data')
-with open('/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles/TestPreProcessSHORT_FilledInJobRECURSIVE.provn', 'wt') as fp:fp.writelines(g.get_provn())
+with open('/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles/TestSegmentSliceTimeRealignCoregNormSmoothRECURSIVE.provn', 'wt') as fp:fp.writelines(g.get_provn())
