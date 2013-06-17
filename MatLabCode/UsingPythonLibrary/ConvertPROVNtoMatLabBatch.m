@@ -8,7 +8,7 @@ InFile = 'TestPreProcessSHORT_FilledInJobRECURSIVE.provn';
 % InFile = 'TestSmoothRECURSIVE.provn';
 InFile = 'TestSegmentSliceTimeRealignCoregNormRECURSIVE.provn';
 InFile = 'TestSegmentSliceTimeRealignCoregNormSmoothRECURSIVE.provn';
-
+InFile = 'PreProcJob_FilledInJobRECURSIVE.provn';
 D = textread(fullfile(BaseDir,InFile),'%s','delimiter','\n');
 
 %% rebuild the matlabbatch structure from the PROVN file

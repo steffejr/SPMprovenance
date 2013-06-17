@@ -1,0 +1,2265 @@
+{
+  "wasInfluencedBy": {
+    "_:Infl4": {
+      "prov:influencer": "matlabbatch5.spm",
+      "prov:influencee": "matlabbatch6.spm"
+    },
+    "_:Infl2": {
+      "prov:influencer": "matlabbatch3.spm",
+      "prov:influencee": "matlabbatch4.spm"
+    },
+    "_:Infl3": {
+      "prov:influencer": "matlabbatch4.spm",
+      "prov:influencee": "matlabbatch5.spm"
+    },
+    "_:Infl1": {
+      "prov:influencer": "matlabbatch2.spm",
+      "prov:influencee": "matlabbatch3.spm"
+    }
+  },
+  "entity": {
+    "/share/data/data5/spm8/tpm/white.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts.tpm",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.biasfwhm": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "60",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "biasfwhm"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.wrap": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 0 0 0]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "wrap"
+    },
+    "matlabbatch6.spm.spatial.smooth.data": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth",
+        "type": "xsd:string"
+      },
+      "prov:label": "data"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/raECF_r2_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/waECF_r1_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch6.spm.spatial.smooth.data",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch6.spm.spatial.smooth.data"
+      }
+    ],
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/aECF_r1_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch2.spm.temporal.st.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch2.spm.temporal.st.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch3.spm.spatial.realign.estwrite.data",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch3.spm.spatial.realign.estwrite.data"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch4.spm.spatial.coreg.estimate.other",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch4.spm.spatial.coreg.estimate.other"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.subj.resample",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+      }
+    ],
+    "matlabbatch1.spm.spatial.preproc.opts.samp": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "3",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "samp"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "r",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "prefix"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign",
+        "type": "xsd:string"
+      },
+      "prov:label": "estwrite"
+    },
+    "matlabbatch2.spm.temporal.st": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal",
+        "type": "xsd:string"
+      },
+      "prov:label": "st"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write",
+        "type": "xsd:string"
+      },
+      "prov:label": "roptions"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.eoptions.tol": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 0.02 0.02 0.02 0.001 0.001 0.001 0.01 0.01 0.01 0.001 0.001 0.001]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "tol"
+    },
+    "matlabbatch1.spm.spatial.preproc.output.CSF": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 1 1]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "CSF"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.eoptions.cost_fun": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "nmi",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "cost_fun"
+    },
+    "matlabbatch6": {},
+    "matlabbatch5": {},
+    "matlabbatch2": {},
+    "matlabbatch1": {},
+    "matlabbatch6.spm.spatial.smooth.dtype": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth",
+        "type": "xsd:string"
+      },
+      "prov:label": "dtype"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/T1_P00004218_S0001_seg_sn.mat": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.subj.matname",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.subj.matname"
+      }
+    ],
+    "matlabbatch4": {},
+    "matlabbatch3": {},
+    "matlabbatch": {},
+    "matlabbatch4.spm.spatial.coreg.estimate.other": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate",
+        "type": "xsd:string"
+      },
+      "prov:label": "other"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c2T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/swaECF_r1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth.prefix",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc3T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.eoptions": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate",
+        "type": "xsd:string"
+      },
+      "prov:label": "eoptions"
+    },
+    "matlabbatch4.spm.spatial.coreg": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial",
+        "type": "xsd:string"
+      },
+      "prov:label": "coreg"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/swaECF_r2_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth.prefix",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc1T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.source": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate",
+        "type": "xsd:string"
+      },
+      "prov:label": "source"
+    },
+    "matlabbatch1.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.interp": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "2",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "interp"
+    },
+    "matlabbatch1.spm.spatial.preproc.output.GM": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 1 1]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "GM"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc3T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.subj.resample": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.subj",
+        "type": "xsd:string"
+      },
+      "prov:label": "resample"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/swmeanaECF_r1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth.prefix",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/ECF_r1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st.scans",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch2.spm.temporal.st.scans"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.eoptions.fwhm": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 7 7]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "fwhm"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.ref": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate",
+        "type": "xsd:string"
+      },
+      "prov:label": "ref"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions.interp": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "4",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "interp"
+    },
+    "matlabbatch2.spm.temporal.st.nslices": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "41",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "nslices"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/meanaECF_r1_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch4.spm.spatial.coreg.estimate.source",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch4.spm.spatial.coreg.estimate.source"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.subj.resample",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+      }
+    ],
+    "matlabbatch2.spm.temporal": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "temporal"
+    },
+    "/share/data/data5/spm8/tpm/grey.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts.tpm",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "matlabbatch5.spm.spatial.normalise": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial",
+        "type": "xsd:string"
+      },
+      "prov:label": "normalise"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.preserve": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "preserve"
+    },
+    "matlabbatch5.spm.spatial": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "spatial"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.wrap": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 0 0 0]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "wrap"
+    },
+    "matlabbatch3.spm.spatial.realign": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial",
+        "type": "xsd:string"
+      },
+      "prov:label": "realign"
+    },
+    "/share/data/data5/spm8/tpm/csf.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts.tpm",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.subj": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write",
+        "type": "xsd:string"
+      },
+      "prov:label": "subj"
+    },
+    "matlabbatch2.spm.temporal.st.scans": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "scans"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate.eoptions.sep": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 4 2]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "sep"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite",
+        "type": "xsd:string"
+      },
+      "prov:label": "eoptions"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.bb": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ -78 -112 -50; 78 76 85]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "bb"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions.mask": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "mask"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mT1_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch1.spm.spatial.preproc.output",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch4.spm.spatial.coreg.estimate.ref",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch4.spm.spatial.coreg.estimate.ref"
+      }
+    ],
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions.which": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 0 1]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "which"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.tpm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "tpm"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.regtype": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "mni",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "regtype"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.interp": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "interp"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc1T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "matlabbatch6.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "matlabbatch1.spm.spatial.preproc.output": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc",
+        "type": "xsd:string"
+      },
+      "prov:label": "output"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.prefix": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "w",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "prefix"
+    },
+    "matlabbatch4.spm.spatial": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "spatial"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/waECF_r2_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch6.spm.spatial.smooth.data",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch6.spm.spatial.smooth.data"
+      }
+    ],
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/ECF_r2_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st.scans",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch2.spm.temporal.st.scans"
+    },
+    "matlabbatch2.spm.temporal.st.refslice": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "20",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "refslice"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.biasreg": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0.0001",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "biasreg"
+    },
+    "matlabbatch2.spm.temporal.st.prefix": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "a",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "prefix"
+    },
+    "matlabbatch3.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc",
+        "type": "xsd:string"
+      },
+      "prov:label": "opts"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/wmeanaECF_r1_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "1",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch6.spm.spatial.smooth.data",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch6.spm.spatial.smooth.data"
+      }
+    ],
+    "matlabbatch2.spm.temporal.st.tr": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "2",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "tr"
+    },
+    "matlabbatch6.spm.spatial.smooth.im": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth",
+        "type": "xsd:string"
+      },
+      "prov:label": "im"
+    },
+    "matlabbatch3.spm.spatial": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "spatial"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c3T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/aECF_r2_P00004218_S0001.nii": [
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch2.spm.temporal.st.prefix",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch2.spm.temporal.st.prefix"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch3.spm.spatial.realign.estwrite.data",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch3.spm.spatial.realign.estwrite.data"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch4.spm.spatial.coreg.estimate.other",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch4.spm.spatial.coreg.estimate.other"
+      },
+      {
+        "prov:type": {
+          "$": "ImageIndex",
+          "type": "xsd:string"
+        },
+        "prov:value": {
+          "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+          "type": "xsd:string"
+        },
+        "spm:structpath": {
+          "$": "matlabbatch5.spm.spatial.normalise.write.subj.resample",
+          "type": "xsd:string"
+        },
+        "prov:label": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+      }
+    ],
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.fwhm": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "5",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "fwhm"
+    },
+    "matlabbatch1.spm.spatial.preproc.output.WM": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 1 1]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "WM"
+    },
+    "matlabbatch1.spm.spatial.preproc.output.cleanup": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "cleanup"
+    },
+    "matlabbatch1.spm.spatial.preproc.data": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc",
+        "type": "xsd:string"
+      },
+      "prov:label": "data"
+    },
+    "matlabbatch1.spm.spatial": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "spatial"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite",
+        "type": "xsd:string"
+      },
+      "prov:label": "roptions"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.rtm": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "rtm"
+    },
+    "matlabbatch1.spm.spatial.preproc.output.biascor": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "biascor"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.subj.matname": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.subj",
+        "type": "xsd:string"
+      },
+      "prov:label": "matname"
+    },
+    "matlabbatch1.spm.spatial.preproc": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial",
+        "type": "xsd:string"
+      },
+      "prov:label": "preproc"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.roptions.wrap": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 0 0 0]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "wrap"
+    },
+    "matlabbatch6.spm.spatial": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm",
+        "type": "xsd:string"
+      },
+      "prov:label": "spatial"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/raECF_r1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 2 3 4 5 6 7 8 9 10]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.ngaus": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 2; 2; 2; 4]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "ngaus"
+    },
+    "matlabbatch5.spm.spatial.normalise.write.roptions.vox": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 2 2 2]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise.write.roptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "vox"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.warpco": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "25",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "warpco"
+    },
+    "matlabbatch2.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.warpreg": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "warpreg"
+    },
+    "matlabbatch5.spm.spatial.normalise.write": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5.spm.spatial.normalise",
+        "type": "xsd:string"
+      },
+      "prov:label": "write"
+    },
+    "matlabbatch6.spm.spatial.smooth.prefix": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "s",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth",
+        "type": "xsd:string"
+      },
+      "prov:label": "prefix"
+    },
+    "matlabbatch6.spm.spatial.smooth.fwhm": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 8 8 8]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial.smooth",
+        "type": "xsd:string"
+      },
+      "prov:label": "fwhm"
+    },
+    "matlabbatch1.spm.spatial.preproc.opts.msk": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.opts",
+        "type": "xsd:string"
+      },
+      "prov:label": "msk"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.sep": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "4",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "sep"
+    },
+    "matlabbatch4.spm.spatial.coreg.estimate": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4.spm.spatial.coreg",
+        "type": "xsd:string"
+      },
+      "prov:label": "estimate"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.data": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite",
+        "type": "xsd:string"
+      },
+      "prov:label": "data"
+    },
+    "matlabbatch4.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch4",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc2T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.data",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.data"
+    },
+    "matlabbatch6.spm.spatial.smooth": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch6.spm.spatial",
+        "type": "xsd:string"
+      },
+      "prov:label": "smooth"
+    },
+    "matlabbatch2.spm.temporal.st.ta": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1.9512",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "ta"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.weight": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "weight"
+    },
+    "matlabbatch5.spm": {
+      "prov:type": {
+        "$": "bundle",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch5",
+        "type": "xsd:string"
+      },
+      "prov:label": "spm"
+    },
+    "matlabbatch3.spm.spatial.realign.estwrite.eoptions.quality": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "0.9",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+        "type": "xsd:string"
+      },
+      "prov:label": "quality"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc2T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "matlabbatch2.spm.temporal.st.so": {
+      "prov:type": {
+        "$": "spm:parameter",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "[ 1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40]",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch2.spm.temporal.st",
+        "type": "xsd:string"
+      },
+      "prov:label": "so"
+    },
+    "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c1T1_P00004218_S0001.nii": {
+      "prov:type": {
+        "$": "ImageIndex",
+        "type": "xsd:string"
+      },
+      "prov:value": {
+        "$": "1",
+        "type": "xsd:string"
+      },
+      "spm:structpath": {
+        "$": "matlabbatch1.spm.spatial.preproc.output",
+        "type": "xsd:string"
+      },
+      "prov:label": "matlabbatch1.spm.spatial.preproc.output"
+    }
+  },
+  "prefix": {
+    "prim": "http://openprovenance.org/primitives#",
+    "xsd": "http://www.w3.org/2001/XMLSchema",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "pc1": "http://www.ipaw.info/pc1/"
+  },
+  "wasDerivedFrom": {
+    "_:wDF7": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c3T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF6": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc2T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF20": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/swmeanaECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "_:wDF9": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc3T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF21": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/swaECF_r2_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "_:wDF8": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc3T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF10": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mT1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF11": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/aECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch2.spm.temporal.st.prefix"
+    },
+    "_:wDF12": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/aECF_r2_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch2.spm.temporal.st.prefix"
+    },
+    "_:wDF1": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c1T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF3": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/wc1T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF2": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc1T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF5": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mwc2T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF4": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/c2T1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:wDF19": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/swaECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "_:wDF18": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/waECF_r2_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+    },
+    "_:wDF17": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/wmeanaECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+    },
+    "_:wDF16": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/waECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+    },
+    "_:wDF15": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/T1_P00004218_S0001_seg_sn.mat",
+      "prov:usedEntity": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+    },
+    "_:wDF14": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/raECF_r2_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix"
+    },
+    "_:wDF13": {
+      "prov:generatedEntity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/raECF_r1_P00004218_S0001.nii",
+      "prov:usedEntity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix"
+    }
+  },
+  "used": {
+    "_:u107": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/waECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.data"
+    },
+    "_:u108": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/wmeanaECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.data"
+    },
+    "_:u105": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/meanaECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+    },
+    "_:u106": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/aECF_r2_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+    },
+    "_:u103": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/T1_P00004218_S0001_seg_sn.mat",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.matname"
+    },
+    "_:u104": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/aECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+    },
+    "_:u101": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/aECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.other"
+    },
+    "_:u102": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/aECF_r2_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.other"
+    },
+    "_:u100": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/meanaECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.source"
+    },
+    "_:u55": {
+      "prov:activity": "matlabbatch4.spm",
+      "prov:entity": "matlabbatch4.spm.spatial"
+    },
+    "_:u56": {
+      "prov:activity": "matlabbatch4.spm.spatial",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg"
+    },
+    "_:u53": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch4"
+    },
+    "_:u54": {
+      "prov:activity": "matlabbatch4",
+      "prov:entity": "matlabbatch4.spm"
+    },
+    "_:u59": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.source"
+    },
+    "_:u57": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate"
+    },
+    "_:u58": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.ref"
+    },
+    "_:u51": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.mask"
+    },
+    "_:u52": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.prefix"
+    },
+    "_:u50": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.wrap"
+    },
+    "_:u39": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions"
+    },
+    "_:u42": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.fwhm"
+    },
+    "_:u43": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.rtm"
+    },
+    "_:u44": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.interp"
+    },
+    "_:u45": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.wrap"
+    },
+    "_:u46": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.weight"
+    },
+    "_:u47": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions"
+    },
+    "_:u48": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.which"
+    },
+    "_:u49": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.roptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.roptions.interp"
+    },
+    "_:u109": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/waECF_r2_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.data"
+    },
+    "_:u40": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.quality"
+    },
+    "_:u41": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.eoptions.sep"
+    },
+    "_:u79": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.wrap"
+    },
+    "_:u77": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.vox"
+    },
+    "_:u78": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.interp"
+    },
+    "_:u75": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.preserve"
+    },
+    "_:u76": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.bb"
+    },
+    "_:u73": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.subj",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.resample"
+    },
+    "_:u74": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions"
+    },
+    "_:u71": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj"
+    },
+    "_:u72": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.subj",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.subj.matname"
+    },
+    "_:u70": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write"
+    },
+    "_:u68": {
+      "prov:activity": "matlabbatch5.spm",
+      "prov:entity": "matlabbatch5.spm.spatial"
+    },
+    "_:u69": {
+      "prov:activity": "matlabbatch5.spm.spatial",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise"
+    },
+    "_:u64": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions.tol"
+    },
+    "_:u65": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions.fwhm"
+    },
+    "_:u66": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch5"
+    },
+    "_:u67": {
+      "prov:activity": "matlabbatch5",
+      "prov:entity": "matlabbatch5.spm"
+    },
+    "_:u60": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.other"
+    },
+    "_:u61": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions"
+    },
+    "_:u62": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions.cost_fun"
+    },
+    "_:u63": {
+      "prov:activity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.eoptions.sep"
+    },
+    "_:u23": {
+      "prov:activity": "matlabbatch2",
+      "prov:entity": "matlabbatch2.spm"
+    },
+    "_:u22": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch2"
+    },
+    "_:u21": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.msk"
+    },
+    "_:u20": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.samp"
+    },
+    "_:u27": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.nslices"
+    },
+    "_:u26": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.scans"
+    },
+    "_:u25": {
+      "prov:activity": "matlabbatch2.spm.temporal",
+      "prov:entity": "matlabbatch2.spm.temporal.st"
+    },
+    "_:u24": {
+      "prov:activity": "matlabbatch2.spm",
+      "prov:entity": "matlabbatch2.spm.temporal"
+    },
+    "_:u92": {
+      "prov:activity": "/share/data/data5/spm8/tpm/grey.nii",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "_:u91": {
+      "prov:activity": "/share/data/data5/spm8/tpm/csf.nii",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "_:u90": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/T1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.data"
+    },
+    "_:u96": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/ECF_r2_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch2.spm.temporal.st.scans"
+    },
+    "_:u95": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/ECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch2.spm.temporal.st.scans"
+    },
+    "_:u94": {
+      "prov:activity": "None",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.msk"
+    },
+    "_:u93": {
+      "prov:activity": "/share/data/data5/spm8/tpm/white.nii",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "_:u19": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.biasfwhm"
+    },
+    "_:u99": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/T1/mT1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch4.spm.spatial.coreg.estimate.ref"
+    },
+    "_:u98": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r2/aECF_r2_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.data"
+    },
+    "_:u17": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.warpco"
+    },
+    "_:u18": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.biasreg"
+    },
+    "_:u97": {
+      "prov:activity": "/share/data/studies/CogRes/Subjects/P00004218/S0001/ECF_r1/aECF_r1_P00004218_S0001.nii",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.data"
+    },
+    "_:u32": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.prefix"
+    },
+    "_:u31": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.refslice"
+    },
+    "_:u34": {
+      "prov:activity": "matlabbatch3",
+      "prov:entity": "matlabbatch3.spm"
+    },
+    "_:u33": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch3"
+    },
+    "_:u36": {
+      "prov:activity": "matlabbatch3.spm.spatial",
+      "prov:entity": "matlabbatch3.spm.spatial.realign"
+    },
+    "_:u35": {
+      "prov:activity": "matlabbatch3.spm",
+      "prov:entity": "matlabbatch3.spm.spatial"
+    },
+    "_:u38": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign.estwrite",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite.data"
+    },
+    "_:u37": {
+      "prov:activity": "matlabbatch3.spm.spatial.realign",
+      "prov:entity": "matlabbatch3.spm.spatial.realign.estwrite"
+    },
+    "_:u30": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.so"
+    },
+    "_:u81": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch6"
+    },
+    "_:u80": {
+      "prov:activity": "matlabbatch5.spm.spatial.normalise.write.roptions",
+      "prov:entity": "matlabbatch5.spm.spatial.normalise.write.roptions.prefix"
+    },
+    "_:u83": {
+      "prov:activity": "matlabbatch6.spm",
+      "prov:entity": "matlabbatch6.spm.spatial"
+    },
+    "_:u82": {
+      "prov:activity": "matlabbatch6",
+      "prov:entity": "matlabbatch6.spm"
+    },
+    "_:u85": {
+      "prov:activity": "matlabbatch6.spm.spatial.smooth",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.data"
+    },
+    "_:u84": {
+      "prov:activity": "matlabbatch6.spm.spatial",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth"
+    },
+    "_:u28": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.tr"
+    },
+    "_:u87": {
+      "prov:activity": "matlabbatch6.spm.spatial.smooth",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.dtype"
+    },
+    "_:u29": {
+      "prov:activity": "matlabbatch2.spm.temporal.st",
+      "prov:entity": "matlabbatch2.spm.temporal.st.ta"
+    },
+    "_:u86": {
+      "prov:activity": "matlabbatch6.spm.spatial.smooth",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.fwhm"
+    },
+    "_:u89": {
+      "prov:activity": "matlabbatch6.spm.spatial.smooth",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.prefix"
+    },
+    "_:u88": {
+      "prov:activity": "matlabbatch6.spm.spatial.smooth",
+      "prov:entity": "matlabbatch6.spm.spatial.smooth.im"
+    },
+    "_:u14": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.ngaus"
+    },
+    "_:u13": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.tpm"
+    },
+    "_:u16": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.warpreg"
+    },
+    "_:u15": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.opts",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts.regtype"
+    },
+    "_:u10": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.output",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output.biascor"
+    },
+    "_:u12": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.opts"
+    },
+    "_:u1": {
+      "prov:activity": "matlabbatch",
+      "prov:entity": "matlabbatch1"
+    },
+    "_:u11": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.output",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output.cleanup"
+    },
+    "_:u3": {
+      "prov:activity": "matlabbatch1.spm",
+      "prov:entity": "matlabbatch1.spm.spatial"
+    },
+    "_:u2": {
+      "prov:activity": "matlabbatch1",
+      "prov:entity": "matlabbatch1.spm"
+    },
+    "_:u5": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.data"
+    },
+    "_:u4": {
+      "prov:activity": "matlabbatch1.spm.spatial",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc"
+    },
+    "_:u7": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.output",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output.GM"
+    },
+    "_:u6": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output"
+    },
+    "_:u9": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.output",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output.CSF"
+    },
+    "_:u8": {
+      "prov:activity": "matlabbatch1.spm.spatial.preproc.output",
+      "prov:entity": "matlabbatch1.spm.spatial.preproc.output.WM"
+    }
+  }
+}

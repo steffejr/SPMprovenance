@@ -11,6 +11,7 @@ Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSe
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNorm.m';
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNormSmooth.m';
 
+Infile = '/Users/jason/Documents/MyData/TestSPMProv/OneSubject/PreProcJob_FilledInJob.m';
 %InFile = spm_select(1)
 
 %Infile = '/Users/jason/Documents/ProvenanceTools/ProvenanceLibrary/SPMJobs/SegmentONLYJob_FilledInJob.m';
