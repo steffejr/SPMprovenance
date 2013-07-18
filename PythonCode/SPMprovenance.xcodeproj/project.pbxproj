@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		9695083B177131F3002D9F66 /* CombineJSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CombineJSON; sourceTree = "<group>"; };
+		9695083C17713248002D9F66 /* CombineJSON.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = CombineJSON.py; sourceTree = "<group>"; };
 		96AC9CF416AE281600896B31 /* test1.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test1.py; sourceTree = "<group>"; };
 		96AC9CF616AE291100896B31 /* test2.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test2.py; sourceTree = "<group>"; };
 		96F4F1F016AE0E16005B6D25 /* SPMextract1.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = SPMextract1.py; sourceTree = "<group>"; };
@@ -17,6 +19,8 @@
 			isa = PBXGroup;
 			children = (
 				96AC9CF616AE291100896B31 /* test2.py */,
+				9695083B177131F3002D9F66 /* CombineJSON */,
+				9695083C17713248002D9F66 /* CombineJSON.py */,
 				96AC9CF416AE281600896B31 /* test1.py */,
 				96F4F1F016AE0E16005B6D25 /* SPMextract1.py */,
 			);

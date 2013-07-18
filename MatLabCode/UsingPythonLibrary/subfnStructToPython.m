@@ -47,7 +47,7 @@ CELLRECURSIVE = false;
 %----- PARAMETERS END -------%
 
 %disp([Xname ':'])
-fprintf(1,'STRUCT >> %s\n',Xname);
+%fprintf(1,'STRUCT >> %s\n',Xname);
 if length(findstr(Xname,'.'))>0
     [ListOfOutPutImages] = subfnWriteCollectionTypeEntity(X,Xname,fid,step,ListOfInPutImages,ListOfOutPutImages);
 end
@@ -55,7 +55,7 @@ end
 %fprintf('\b')
 
 if isstruct(X) || isobject(X)
-    fprintf(1,'if isstruct(X) || isobject(X)\n');
+ %   fprintf(1,'if isstruct(X) || isobject(X)\n');
     F = fieldnames(X);
     nsub = length(F);
     Y = cell(1,nsub);
@@ -65,7 +65,7 @@ if isstruct(X) || isobject(X)
         Y{i} = X.(f);
         subnames{i} = [Xname '.' f];
     end
-    fprintf(1,'***** CASE 1\n');
+  %  fprintf(1,'***** CASE 1\n');
 elseif CELLRECURSIVE && iscell(X)
     nsub = numel(X);
     s = size(X);
@@ -186,6 +186,7 @@ entity = sprintf('matlabbatch%d%s',step,entity);
 fDOT = findstr(entity,'.');
 entityPath = sprintf('%s',entity(1:fDOT(end)-1));
 entityName = entity(fDOT(end)+1:end);
+fprintf(1,'ENTITY: %s\n',entity);
 fprintf(fid,'g.entity(''%s'',{''prov:type'':''bundle'',''prov:label'':''%s'',''spm:structpath'':''%s''})\n',entity,entityName,entityPath);
 fprintf(fid,'g.used(''%s'',''%s'')\n',entityPath,entity);
 %fprintf(1,'===END COLLECTION===\n');

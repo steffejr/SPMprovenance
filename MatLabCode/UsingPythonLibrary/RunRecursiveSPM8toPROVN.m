@@ -9,7 +9,7 @@ Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestPr
 % Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSmooth.m';
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealign.m';
 Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNorm.m';
-Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNormSmooth.m';
+%Infile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSegmentSliceTimeRealignCoregNormSmooth.m';
 
 Infile = '/Users/jason/Documents/MyData/TestSPMProv/OneSubject/PreProcJob_FilledInJob.m';
 %InFile = spm_select(1)
