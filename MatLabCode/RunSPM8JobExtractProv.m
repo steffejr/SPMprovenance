@@ -17,7 +17,9 @@ cfg_util('savejob',job_id,JobAsMFile)
 %                 outputs is defined in the configuration of each module
 %                 see help spm_jobman
                 
-output_list = spm_jobman('run',matlabbatch);
+cfg_util('run',job_id)
+output_list = cfg_util('getalloutputs', job_id);
+%output_list = spm_jobman('run',matlabbatch);
 % Save the output_list cell array
 eval(sprintf('save %s output_list',fullfile(PathName,[FileName '_output_list'])));
 
