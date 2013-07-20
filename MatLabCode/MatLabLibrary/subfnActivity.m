@@ -1,11 +1,11 @@
-function id =  subfnActivity(fid,id,varargin)
+function id =  subfnActivity(fid,id,starttime,stoptime,varargin)
 % usage: id = subfnActivity(fid,id,varargin)
 %
 % fid: the file identifier of the output
 % id: the identification of this entity
-% varargin: if optional arguements are passed the first two are the start
-% and stop time of this activity.
-% After these are specified then the other attributes are key/value pairs.
+% starttime: time this activity started
+% stoptime: time this activity ended
+% varargin: optional arguements specified as key/value pairs.
 %
 
 % written by: Jason steffener, 07/19/2013
@@ -15,8 +15,25 @@ if nargin < 2
     error('usage: id = subfnActivity(fid,id,varargin)');
 end
 
+activityStr = sprintf('activity(%s,',id);
+
+if exist('starttime')
+    if length(time)
+        activityStr = sprintf('%s%s,',activityStr,starttime);
+    end
+else
+    activityStr = sprintf('%s%s,',activityStr,'-');
+end
+if exist('stoptime')
+    if length(time)
+        activityStr = sprintf('%s%s',activityStr,stoptime);
+    end
+else
+    activityStr = sprintf('%s%s',activityStr,'-');
+end
+
 Narg = length(varargin);
-activityStr = sprintf('activity(%s',id);
+
 if Narg > 0
     if mod(Narg,2) ~= 0
         error('arguments need to be entered as key/value pairs')
@@ -41,4 +58,4 @@ if Narg > 0
 else
     activityStr = sprintf('%s)\n',activityStr);
 end
-fprintf(fid,'%s',activityStr)
+fprintf(fid,'%s',activityStr);

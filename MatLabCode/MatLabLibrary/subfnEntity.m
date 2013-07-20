@@ -31,4 +31,4 @@ if Narg > 0
 else
     entityStr = sprintf('%s)\n',entityStr);
 end
-fprintf(fid,'%s',entityStr)
+fprintf(fid,'%s',entityStr);
