@@ -11,8 +11,16 @@ load(InFile);
 JobAsMFile = fullfile(PathName,[FileName,'InputJob.m'])
 cfg_util('savejob',job_id,JobAsMFile)
 % pass the job id to the RUN command. This will actually implement the job
-% steps
-cfg_util('run',job_id)
+% steps.
+% The output_list is a cell array containing the output arguments from each
+%                 module in the job. The format and contents of these
+%                 outputs is defined in the configuration of each module
+%                 see help spm_jobman
+                
+output_list = spm_jobman('run',matlabbatch);
+% Save the output_list cell array
+eval(sprintf('save %s output_list',fullfile(PathName,[FileName '_output_list'])));
+
 % Once the job is run the this step extracts the filled in job file.
 % Therefore, all dependecies are resolved.
 FilledInJobAsMFile = fullfile(PathName,[FileName, '_FilledInJob.m']);
