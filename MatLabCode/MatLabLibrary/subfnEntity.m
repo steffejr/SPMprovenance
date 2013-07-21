@@ -18,14 +18,14 @@ if Narg > 0
     if mod(Narg,2) ~= 0
         error('arguments need to be entered as key/value pairs')
     else
-        write the open brackets 
+%        write the open brackets 
         entityStr = sprintf('%s, [',entityStr);
         for i = 1:2:Narg
             entityStr = sprintf('%s %s="%s",',entityStr,num2str(varargin{i}),num2str(varargin{i+1}));
         end
-        remove the last comma
+%        remove the last comma
         entityStr = entityStr(1:end-1);
-        write the closing bracket
+%        write the closing bracket
         entityStr = sprintf('%s])\n',entityStr);
     end
 else
