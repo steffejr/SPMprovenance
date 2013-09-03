@@ -16,7 +16,8 @@ InFile = '/Users/jason/Documents/MyData/TestSPMProv/OneSubject/PreProcJob_Filled
 
 %InFile = '/Users/jason/Documents/ProvenanceTools/ProvenanceLibrary/SPMJobs/SegmentONLYJob_FilledInJob.m';
 
-InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/FMP_P00002021_S0001_FilledInJob.m';
+%InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/FMP_P00002021_S0001_FilledInJob.m';%
+InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/iLS_PreProcss_NoFieldMap_FilledInJob.m';
 OutDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
 % load the input job
 [inPathName InFileName] = fileparts(InFile);
