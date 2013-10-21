@@ -1,7 +1,16 @@
 clear
-PythonCode='/Users/jason/Documents/ProvenanceTools/SPMprovenance/MatLabCode/UsingPythonLibrary';
-addpath(PythonCode)
-InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestPreProcessSHORT_FilledInJob.m';
+if ismac 
+    BaseDir = '/Users/jason/Dropbox/SteffenerColumbia/Scripts/ProvenanceTools';
+elseif ispc
+    BaseDir = '/Users/jason/Documents';
+end
+addpath(fullfile(BaseDir,'SPMprovenance/MatLabCode/MatLabLibrary'));
+
+
+
+%PythonCode='/Users/jason/Documents/ProvenanceTools/SPMprovenance/MatLabCode/UsingPythonLibrary';
+%addpath(PythonCode)
+InFile = fullfile(BaseDir,'SPMprovenance/InputFiles/TestPreProcessSHORT_FilledInJob.m');
 % InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestSliceTime.m';
 % InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestRealign.m';
 % InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/TestCoReg.m';
@@ -17,8 +26,8 @@ InFile = '/Users/jason/Documents/MyData/TestSPMProv/OneSubject/PreProcJob_Filled
 %InFile = '/Users/jason/Documents/ProvenanceTools/ProvenanceLibrary/SPMJobs/SegmentONLYJob_FilledInJob.m';
 
 %InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/FMP_P00002021_S0001_FilledInJob.m';%
-InFile = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/InputFiles/iLS_PreProcss_NoFieldMap_FilledInJob.m';
-OutDir = '/Users/jason/Documents/ProvenanceTools/SPMprovenance/OutputFiles';
+InFile = fullfile(BaseDir,'SPMprovenance/InputFiles/iLS_PreProcss_NoFieldMap_FilledInJob.m');
+OutDir = fullfile(BaseDir,'SPMprovenance/OutputFiles');
 % load the input job
 [inPathName InFileName] = fileparts(InFile);
 cd(inPathName)

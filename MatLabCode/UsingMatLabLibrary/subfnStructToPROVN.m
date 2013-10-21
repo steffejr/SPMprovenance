@@ -128,7 +128,7 @@ entityValue = subfnConvertFieldToString(ParameterValue);
 fDOT = findstr(entity,'.');
 entityPath = sprintf('%s',entity(1:fDOT(end)-1));
 entityName = entity(fDOT(end)+1:end);
-subfnEntity(fid,entity,'prov:type','spm:parameter','spm:structpath',entityPath,'prov:label',entityName,'prov:label',entityValue);
+subfnEntity(fid,entity,'prov:type','spm:parameter','spm:structpath',entityPath,'prov:label',entityName,'prov:value',entityValue);
 %fprintf(fid,'g.entity(''%s'',{''prov:type'':''spm:parameter'',''spm:structpath'':''%s'',''prov:label'':''%s'',''prov:value'':''%s''})\n',entity,entityPath,entityName,entityValue);
 
 % fprintf(fid,'g.entity(''%s'',{''prov:type'':''spm:parameter'',''spm:structpath'':'''',''prov:value'':''%s''})\n',entityName,i,ProcessInput,Parameters{kk},OutStr);

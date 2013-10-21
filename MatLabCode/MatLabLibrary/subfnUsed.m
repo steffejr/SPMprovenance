@@ -56,11 +56,11 @@ if Narg > 0
         % remove the last comma
         UsedStr = UsedStr(1:end-1);
         % write the closing bracket
-        UsedStr = sprintf('%s])\n',UsedStr);
+        UsedStr = sprintf('%s])\n\n',UsedStr);
                 
     end
 else
-    UsedStr = sprintf('%s)\n',UsedStr);
+    UsedStr = sprintf('%s)\n\n',UsedStr);
 end
 fprintf(fid,'%s',UsedStr);
 
