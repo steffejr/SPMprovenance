@@ -1,0 +1,929 @@
+activity(Estimate,-,-)
+entity(xY,
+	[ RT="2",
+	 P="TBD",
+	 VY="TBD-STRUCT"])
+
+entity(xBF,
+	[ UNITS="secs",
+	 dt="0.125",
+	 T="16",
+	 T0="1",
+	 name="hrf",
+	 length="32.125",
+	 order="1",
+	 bf="TBD",
+	 Volterra="1"])
+
+entity(Sess_1,
+	[ U="TBD-STRUCT",
+	 C="TBD-STRUCT",
+	 row="TBD",
+	 col="[ 1 2 3 4 5 6 7 8 9 10 11 12 13]",
+	 Fc="TBD-STRUCT"])
+
+entity(Sess_2,
+	[ U="TBD-STRUCT",
+	 C="TBD-STRUCT",
+	 row="TBD",
+	 col="[ 14 15 16 17 18 19 20 21 22 23]",
+	 Fc="TBD-STRUCT"])
+
+entity(Sess_3,
+	[ U="TBD-STRUCT",
+	 C="TBD-STRUCT",
+	 row="TBD",
+	 col="[ 24 25 26 27 28 29 30 31 32 33 34 35 36]",
+	 Fc="TBD-STRUCT"])
+
+entity(xGX,
+	[ iGXcalc="None",
+	 sGXcalc="mean voxel value",
+	 sGMsca="session specific",
+	 rg="TBD",
+	 GM="100",
+	 gSF="TBD"])
+
+entity(xX,
+	[ K="TBD-STRUCT",
+	 X="TBD",
+	 iH="",
+	 iC="TBD",
+	 iB="[ 37 38 39]",
+	 iG="",
+	 name="TBD",
+	 W="TBD",
+	 xKXs="TBD-STRUCT",
+	 pKX="TBD",
+	 V="TBD",
+	 trRV="660",
+	 trRVRV="660",
+	 erdf="660",
+	 Bcov="TBD",
+	 nKX="TBD"])
+
+entity(xVi,
+	[ form="AR(0.2)",
+	 Vi="TBD",
+	 UFp="0.001",
+	 h="[ 0.030425; 1.0586; -0.053636; 1.0637; 0.10035; 1.0506]",
+	 V="TBD",
+	 Cy="TBD",
+	 CY="TBD"])
+
+entity(xM,
+	[ T="TBD",
+	 TH="TBD",
+	 I="0",
+	 VM="",
+	 xs="TBD-STRUCT"])
+
+entity(xsDes,
+	[ Basis_functions="hrf",
+	 Number_of_sessions="3",
+	 Trials_per_session="13 10 13 ",
+	 Interscan_interval="2.00 {s}",
+	 High_pass_Filter="Cutoff: 128 {s}",
+	 Global_calculation="mean voxel value",
+	 Grand_mean_scaling="session specific",
+	 Global_normalisation="None"])
+
+entity(xVol,
+	[ XYZ="TBD",
+	 M="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 iM="[ -0.5 0 0 40; 0 0.5 0 57; 0 0 0.5 26; 0 0 0 1]",
+	 DIM="[ 79; 95; 68]",
+	 FWHM="[ 9.1412 7.9961 6.1372]",
+	 R="[ 3 42.8787 251.8165 415.0098]",
+	 S="201088",
+	 VRpv="TBD-STRUCT"])
+
+entity(Vbeta_1,
+	[ fname="beta_0001.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0001) - Sn(1) Stm2*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_2,
+	[ fname="beta_0002.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0002) - Sn(1) Stm6*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_3,
+	[ fname="beta_0003.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0003) - Sn(1) Ret2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_4,
+	[ fname="beta_0004.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0004) - Sn(1) Ret6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_5,
+	[ fname="beta_0005.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0005) - Sn(1) Ret2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_6,
+	[ fname="beta_0006.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0006) - Sn(1) Ret6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_7,
+	[ fname="beta_0007.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0007) - Sn(1) Pro2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_8,
+	[ fname="beta_0008.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0008) - Sn(1) Pro6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_9,
+	[ fname="beta_0009.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0009) - Sn(1) Pro2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_10,
+	[ fname="beta_0010.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0010) - Sn(1) Pro6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_11,
+	[ fname="beta_0011.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0011) - Sn(1) IncStm*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_12,
+	[ fname="beta_0012.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0012) - Sn(1) IncRet*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_13,
+	[ fname="beta_0013.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0013) - Sn(1) IncPro*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_14,
+	[ fname="beta_0014.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0014) - Sn(2) Stm2*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_15,
+	[ fname="beta_0015.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0015) - Sn(2) Stm6*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_16,
+	[ fname="beta_0016.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0016) - Sn(2) Ret2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_17,
+	[ fname="beta_0017.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0017) - Sn(2) Ret6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_18,
+	[ fname="beta_0018.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0018) - Sn(2) Ret2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_19,
+	[ fname="beta_0019.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0019) - Sn(2) Ret6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_20,
+	[ fname="beta_0020.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0020) - Sn(2) Pro2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_21,
+	[ fname="beta_0021.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0021) - Sn(2) Pro6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_22,
+	[ fname="beta_0022.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0022) - Sn(2) Pro2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_23,
+	[ fname="beta_0023.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0023) - Sn(2) Pro6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_24,
+	[ fname="beta_0024.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0024) - Sn(3) Stm2*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_25,
+	[ fname="beta_0025.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0025) - Sn(3) Stm6*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_26,
+	[ fname="beta_0026.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0026) - Sn(3) Ret2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_27,
+	[ fname="beta_0027.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0027) - Sn(3) Ret6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_28,
+	[ fname="beta_0028.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0028) - Sn(3) Ret2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_29,
+	[ fname="beta_0029.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0029) - Sn(3) Ret6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_30,
+	[ fname="beta_0030.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0030) - Sn(3) Pro2Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_31,
+	[ fname="beta_0031.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0031) - Sn(3) Pro6Low*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_32,
+	[ fname="beta_0032.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0032) - Sn(3) Pro2High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_33,
+	[ fname="beta_0033.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0033) - Sn(3) Pro6High*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_34,
+	[ fname="beta_0034.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0034) - Sn(3) IncStm*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_35,
+	[ fname="beta_0035.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0035) - Sn(3) IncRet*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_36,
+	[ fname="beta_0036.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0036) - Sn(3) IncPro*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_37,
+	[ fname="beta_0037.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0037) - Sn(1) constant",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_38,
+	[ fname="beta_0038.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0038) - Sn(2) constant",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(Vbeta_39,
+	[ fname="beta_0039.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0039) - Sn(3) constant",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(VResMS,
+	[ fname="ResMS.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 64 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 0.0015152; 0; 0]",
+	 descrip="spm_spm:Residual sum-of-squares",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(VM,
+	[ fname="mask.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 2 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:resultant analysis mask",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(xCon_1,
+	[ name="iStm",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_2,
+	[ name="iRet",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_3,
+	[ name="iRet2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_4,
+	[ name="iRet6Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_5,
+	[ name="iRetLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_6,
+	[ name="iRetHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_7,
+	[ name="iPro",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_8,
+	[ name="iPro2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_9,
+	[ name="iPro6Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_10,
+	[ name="iProLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_11,
+	[ name="iProHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_12,
+	[ name="sStm",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_13,
+	[ name="sRet6Letv2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_14,
+	[ name="sRetHighNumvLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_15,
+	[ name="sRet_interaction",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_16,
+	[ name="sRet_at2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_17,
+	[ name="sRet_at6Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_18,
+	[ name="sRet_atLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_19,
+	[ name="sRet_atHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_20,
+	[ name="sProHighNumvLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_21,
+	[ name="sPro6Letv2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_22,
+	[ name="sPro_interaction",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_23,
+	[ name="sPro_at2Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_24,
+	[ name="sPro_at6Let",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_25,
+	[ name="sPro_atLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_26,
+	[ name="sPro_atHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_27,
+	[ name="2LetPro_atLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_28,
+	[ name="2LetPro_atHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_29,
+	[ name="6LetPro_atLowNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(xCon_30,
+	[ name="6LetPro_atHighNum",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(SPM,
+	[ nscan="[ 240 240 240]",
+	 SPMid="SPM8: spm_spm (v4515)",
+	 swd="/share/studies/iLS/Subjects/P00002024/S0001/fmriStats/spm8/results_iLS"])
+
+wasDerivedFrom(xY,SPM,Estimate,-,-)
+wasDerivedFrom(xBF,SPM,Estimate,-,-)
+wasDerivedFrom(Sess_1,SPM,Estimate,-,-)
+wasDerivedFrom(Sess_2,SPM,Estimate,-,-)
+wasDerivedFrom(Sess_3,SPM,Estimate,-,-)
+wasDerivedFrom(xGX,SPM,Estimate,-,-)
+wasDerivedFrom(xX,SPM,Estimate,-,-)
+wasDerivedFrom(xVi,SPM,Estimate,-,-)
+wasDerivedFrom(xM,SPM,Estimate,-,-)
+wasDerivedFrom(xsDes,SPM,Estimate,-,-)
+wasDerivedFrom(xVol,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_1,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_2,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_3,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_4,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_5,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_6,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_7,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_8,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_9,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_10,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_11,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_12,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_13,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_14,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_15,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_16,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_17,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_18,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_19,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_20,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_21,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_22,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_23,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_24,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_25,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_26,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_27,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_28,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_29,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_30,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_31,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_32,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_33,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_34,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_35,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_36,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_37,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_38,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta_39,SPM,Estimate,-,-)
+wasDerivedFrom(VResMS,SPM,Estimate,-,-)
+wasDerivedFrom(VM,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_1,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_2,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_3,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_4,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_5,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_6,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_7,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_8,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_9,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_10,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_11,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_12,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_13,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_14,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_15,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_16,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_17,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_18,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_19,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_20,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_21,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_22,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_23,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_24,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_25,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_26,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_27,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_28,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_29,SPM,Estimate,-,-)
+wasDerivedFrom(xCon_30,SPM,Estimate,-,-)
+used(SPM,Estimate,-)
+

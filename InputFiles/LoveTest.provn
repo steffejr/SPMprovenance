@@ -1,0 +1,21 @@
+document
+entity(jason)
+
+entity(floh)
+
+entity(theliau,
+	[ DOB="011007"])
+
+entity(sezni,
+	[ DOB="033010",
+	 weight="6 something",
+	 time="I should know this!"])
+
+activity(love,-,-)
+wasDerivedFrom(theliau,floh,love,-,-)
+wasDerivedFrom(sezni,floh,love,-,-)
+used(jason,love,-)
+
+used(floh,love,-)
+
+endDocument

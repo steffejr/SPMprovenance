@@ -25,6 +25,7 @@ end
 if ~isstruct(X), error('argument should be a structure or the name of a structure'), end
 rec_structdisp(Xname,X)
 
+
 %---------------------------------
 function rec_structdisp(Xname,X)
 %---
@@ -93,3 +94,4 @@ for i=1:nsub
         disp(a)
     end
 end
+

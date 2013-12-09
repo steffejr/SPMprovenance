@@ -1,0 +1,147 @@
+activity(Estimate,-,-)
+entity(xY,
+	[ RT="2",
+	 P="TBD",
+	 VY="TBD-STRUCT"])
+
+entity(xBF,
+	[ UNITS="secs",
+	 dt="0.125",
+	 T="16",
+	 T0="1",
+	 name="hrf",
+	 length="32.125",
+	 order="1",
+	 bf="TBD",
+	 Volterra="1"])
+
+entity(Sess,
+	[ U="TBD-STRUCT",
+	 C="TBD-STRUCT",
+	 row="TBD",
+	 col="[ 1 2 3 4 5 6 7 8 9 10 11 12 13]",
+	 Fc="TBD-STRUCT"])
+
+entity(xGX,
+	[ iGXcalc="None",
+	 sGXcalc="mean voxel value",
+	 sGMsca="session specific",
+	 rg="TBD",
+	 GM="100",
+	 gSF="TBD"])
+
+entity(xX,
+	[ K="TBD-STRUCT",
+	 X="TBD",
+	 iH="",
+	 iC="TBD",
+	 iB="[ 37 38 39]",
+	 iG="",
+	 name="TBD",
+	 W="TBD",
+	 xKXs="TBD-STRUCT",
+	 pKX="TBD",
+	 V="TBD",
+	 trRV="660",
+	 trRVRV="660",
+	 erdf="660",
+	 Bcov="TBD",
+	 nKX="TBD"])
+
+entity(xVi,
+	[ form="AR(0.2)",
+	 Vi="TBD",
+	 UFp="0.001",
+	 h="[ 0.030425; 1.0586; -0.053636; 1.0637; 0.10035; 1.0506]",
+	 V="TBD",
+	 Cy="TBD",
+	 CY="TBD"])
+
+entity(xM,
+	[ T="TBD",
+	 TH="TBD",
+	 I="0",
+	 VM="",
+	 xs="TBD-STRUCT"])
+
+entity(xsDes,
+	[ Basis_functions="hrf",
+	 Number_of_sessions="3",
+	 Trials_per_session="13 10 13 ",
+	 Interscan_interval="2.00 {s}",
+	 High_pass_Filter="Cutoff: 128 {s}",
+	 Global_calculation="mean voxel value",
+	 Grand_mean_scaling="session specific",
+	 Global_normalisation="None"])
+
+entity(xVol,
+	[ XYZ="TBD",
+	 M="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 iM="[ -0.5 0 0 40; 0 0.5 0 57; 0 0 0.5 26; 0 0 0 1]",
+	 DIM="[ 79; 95; 68]",
+	 FWHM="[ 9.1412 7.9961 6.1372]",
+	 R="[ 3 42.8787 251.8165 415.0098]",
+	 S="201088",
+	 VRpv="TBD-STRUCT"])
+
+entity(Vbeta,
+	[ fname="beta_0001.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 16 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:beta (0001) - Sn(1) Stm2*bf(1)",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(VResMS,
+	[ fname="ResMS.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 64 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 0.0015152; 0; 0]",
+	 descrip="spm_spm:Residual sum-of-squares",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(VM,
+	[ fname="mask.img",
+	 dim="[ 79 95 68]",
+	 dt="[ 2 0]",
+	 mat="[ -2 0 0 80; 0 2 0 -114; 0 0 2 -52; 0 0 0 1]",
+	 pinfo="[ 1; 0; 0]",
+	 descrip="spm_spm:resultant analysis mask",
+	 n="[ 1 1]",
+	 private="TBD"])
+
+entity(xCon,
+	[ name="iStm",
+	 STAT="T",
+	 c="TBD",
+	 X0="TBD-STRUCT",
+	 iX0="c",
+	 X1o="TBD-STRUCT",
+	 eidf="1",
+	 Vcon="TBD-STRUCT",
+	 Vspm="TBD-STRUCT"])
+
+entity(SPM,
+	[ nscan="[ 240 240 240]",
+	 SPMid="SPM8: spm_spm (v4515)",
+	 swd="/share/studies/iLS/Subjects/P00002024/S0001/fmriStats/spm8/results_iLS"])
+
+wasDerivedFrom(xY,SPM,Estimate,-,-)
+wasDerivedFrom(xBF,SPM,Estimate,-,-)
+wasDerivedFrom(Sess,SPM,Estimate,-,-)
+wasDerivedFrom(xGX,SPM,Estimate,-,-)
+wasDerivedFrom(xX,SPM,Estimate,-,-)
+wasDerivedFrom(xVi,SPM,Estimate,-,-)
+wasDerivedFrom(xM,SPM,Estimate,-,-)
+wasDerivedFrom(xsDes,SPM,Estimate,-,-)
+wasDerivedFrom(xVol,SPM,Estimate,-,-)
+wasDerivedFrom(Vbeta,SPM,Estimate,-,-)
+wasDerivedFrom(VResMS,SPM,Estimate,-,-)
+wasDerivedFrom(VM,SPM,Estimate,-,-)
+wasDerivedFrom(xCon,SPM,Estimate,-,-)
+used(SPM,Estimate,-)
+
