@@ -721,7 +721,8 @@ end
 function f = floatstr(f)
     if isnumeric(f)
         if size(f,1) == 1
-            f = strrep(mat2str(f),' ',', ');
+            % Jason add precision of 4
+            f = strrep(mat2str(f,4),' ',', ');
         else
             ff = '[';
             for i=1:size(f,1)

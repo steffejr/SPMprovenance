@@ -1,0 +1,30 @@
+document
+  entity(SPM,
+    [nscan = "[240, 240]",
+    swd = "/Volumes/JASONDATA/studies/iLS/Subjects/P00004205/S0001/TestProvn",
+    FWHM = "[7.832, 6.26, 5.147]",
+    R = "[3, 43.72, 366, 729.9]",
+    S = "1.988e+05",
+    DIM = "[79,95,68]"])
+  activity(Estimate)
+  used(Estimate, SPM)
+  entity(Sess_1,
+    [col = "1",
+    HParam = "128"])
+  wasDerivedFrom(Sess_1, SPM)
+  entity(ActivityOn_1,
+    [ons = "[40,80,120,160,200,240,280,320,360,400,440]",
+    dur = "[20,20,20,20,20,20,20,20,20,20,20]",
+    Sess = "1"])
+  wasDerivedFrom(ActivityOn_1, Sess_1)
+  entity(Sess_2,
+    [col = "2",
+    HParam = "128"])
+  wasDerivedFrom(Sess_2, SPM)
+  entity(ActivityOn_2,
+    [ons = "[40,80,120,160,200,240,280,320,360,400,440]",
+    dur = "[20,20,20,20,20,20,20,20,20,20,20]",
+    Sess = "2"])
+  wasDerivedFrom(ActivityOn_2, Sess_2)
+endDocument
+
